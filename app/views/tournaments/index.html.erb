@@ -1,0 +1,22 @@
+<div>
+<h1>All Tournaments created</h1>
+<% if !user_signed_in? %>
+  <p><%= link_to "Sign Up", new_user_registration_path %></p>
+<% end %>
+</div>
+<div>
+  <% @tournaments.each do |tournament| %>
+  <div>
+    <div>
+      <figure>
+        <%= link_to (image_tag tournament.image.url(:thumb), class: 'image'), tournament %>
+        <p><figcaption><%= tournament.name %></figcaption></p>
+      </figure>
+      <p><%= tournament.description %></p>
+    </div>
+  </div>
+  <% end %>
+</div>
+<div>
+  <%= link_to 'New', new_tournament_path %>
+</div>

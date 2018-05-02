@@ -1,0 +1,13 @@
+<p>
+  <%= image_tag @tournament.image.url, class: 'tournament-image' %>
+</p>
+<p>
+  <%= @tournament.name %> <br>
+  <%= @tournament.description %>
+</p>
+
+<% if !current_user.nil? && current_user.admin %>
+  <%= link_to 'Edit', edit_tournament_path(@tournament) %>
+  <%= link_to 'Delete', tournament_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<%= link_to 'Back', tournaments_path %>
