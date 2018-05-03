@@ -1,0 +1,18 @@
+<div>
+<h1>All Teams</h1>
+</div>
+<div>
+  <% @teams.each do |team| %>
+  <div>
+    <div>
+      <figure>
+        <%= link_to (image_tag team.image.url(:thumb), class: 'image'), team %>
+        <p><figcaption><%= team.name %></figcaption></p>
+      </figure>
+    </div>
+  </div>
+  <% end %>
+</div>
+<div>
+  <%= link_to 'New', new_team_path %>
+</div>
