@@ -1,0 +1,41 @@
+<%= form_for @game, local: true, html: { multipart: true } do |f| %>
+
+  <% if game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+      <ul>
+      <% game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :tournament %>
+    <%= f.select :tournament_id, @tournament.collect {|tournament| [tournament.name, tournament.id]}%>
+  </div>
+  <div class="field">
+    <%= f.label :first_team %>
+    <%= f.select :first_team_id, @teams.collect {|team| [team.name, team.id]}%>
+  </div>
+  <div class="field">
+    <%= f.label :first_team %>
+    <%= f.number_field :score_first_team, in: 0..22 %>
+  </div>
+  <div class="field">
+    <%= f.label :second_team %>
+    <%= f.select :second_team_id, @teams.collect {|team| [team.name, team.id]}%>
+  </div>
+  <div class="field">
+    <%= f.label :second_team %>
+    <%= f.number_field :score_second_team, in: 0..20 %>
+  </div>
+  <div class="field">
+    <%= f.label :date %>
+    <%= f.date_field :date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

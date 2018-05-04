@@ -1,0 +1,29 @@
+<div>
+<h1>All Games</h1>
+</div>
+<div>
+  <%= link_to 'New', new_game_path %>
+</div>
+<div>
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+          <% @games.each_with_index do |game, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><strong>Date:</strong></td>
+            <td><%= game.date %></td>
+            <td><strong>Team 1:</strong></td>
+            <td><%= game.first_team.name %></td>
+            <td><%= game.score_first_team %> </td>
+            <td><strong>Team 2:</strong></td>
+            <td><%= game.second_team.name %></td>
+            <td><%= game.score_second_team %></td>
+            <td><%= link_to 'Show', game %></td>
+            <td><%= link_to 'Show', game %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
