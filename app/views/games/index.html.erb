@@ -11,6 +11,8 @@
           <% @games.each_with_index do |game, index| %>
           <tr>
             <th scope="row"><%= index + 1 %></th>
+            <td><strong>Tournament:</strong></td>
+            <td><%= game.tournament.name %></td>
             <td><strong>Date:</strong></td>
             <td><%= game.date %></td>
             <td><strong>Team 1:</strong></td>
