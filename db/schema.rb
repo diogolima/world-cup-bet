@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20180503235022) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "games", "teams", column: "first_team_id"
-  add_foreign_key "games", "teams", column: "second_team_id"
-  add_foreign_key "games", "tournaments"
+  add_foreign_key "games", "teams", column: "first_team_id", on_delete: :cascade
+  add_foreign_key "games", "teams", column: "second_team_id", on_delete: :cascade
+  add_foreign_key "games", "tournaments", on_delete: :cascade
 end

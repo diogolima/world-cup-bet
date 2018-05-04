@@ -10,8 +10,8 @@ class CreateGames < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_foreign_key :games, :teams, column: :first_team_id, primary_key: :id
-    add_foreign_key :games, :teams, column: :second_team_id, primary_key: :id
-    add_foreign_key :games, :tournaments, column: :tournament_id, primary_key: :id
+    add_foreign_key :games, :teams, column: :first_team_id, primary_key: :id, on_delete: :cascade
+    add_foreign_key :games, :teams, column: :second_team_id, primary_key: :id, on_delete: :cascade
+    add_foreign_key :games, :tournaments, column: :tournament_id, primary_key: :id, on_delete: :cascade
   end
 end
