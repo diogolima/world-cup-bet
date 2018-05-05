@@ -12,7 +12,7 @@
   <% end %>
   <div class="field">
     <%= f.label :tournament %>
-    <%= f.select :tournament_id, @tournament.collect {|tournament| [tournament.name, tournament.id]}%>
+    <%= f.select :tournament_id, @tournaments.collect {|tournament| [tournament.name, tournament.id]}%>
   </div>
   <div class="field">
     <%= f.label :first_team %>

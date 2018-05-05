@@ -1,0 +1,26 @@
+<div class="table-responsive">
+  <table class="table">
+    <tbody>
+        <tr>
+          <td><strong>Tournament:</strong></td>
+          <td><%= @game.tournament.name %></td>
+          <td><strong>Date:</strong></td>
+          <td><%= @game.date %></td>
+        </tr>
+        <tr>
+          <td><%= image_tag @game.first_team.image, class: 'team_image' %></td>
+          <th>
+            <%= @game.score_first_team %>
+            <strong>X</strong>
+            <%= @game.score_second_team %>
+          </th>
+          <td><%= image_tag @game.second_team.image, class: 'team_image' %></td>
+          <tr>
+            <td>
+              <%= link_to 'Back', games_path %>
+            </td>
+          </tr>
+        </tr>
+    </tbody>
+  </table>
+</div>

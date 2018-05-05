@@ -7,6 +7,11 @@ class Game < ApplicationRecord
   validates :first_team, :second_team, :score_first_team, :score_second_team, :date, :tournament, presence: true
   validate :check_first_and_second_team, on: :create
 
+
+  def self.by_team(team)
+    where("first_team_id = :team_id OR second_team_id = :team_id", team_id: team.id)
+  end
+
   def check_first_and_second_team
     if first_team == second_team
      errors.add(:second_team_id, "can't be the same as first team.")
