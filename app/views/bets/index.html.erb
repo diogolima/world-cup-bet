@@ -1,0 +1,24 @@
+<div>
+<h1>All Bets</h1>
+</div>
+<div>
+  <% if !@tournament_missing_bets.blank? %>
+    <%= form_for :tournament, url: { action: "missing_bets" } do |f| %>
+      <div class="field">
+        <%= f.label :tournament %>
+        <%= f.select :id, @tournament_missing_bets.collect {|tournament| [tournament.name, tournament.id]}%>
+      </div>
+      <div class="actions">
+        <%= f.submit 'Missing Bets' %>
+      </div>
+    <% end %>
+  <% end %>
+  <% @bets.each do |bet| %>
+    <div>
+      <%= image_tag bet.game.first_team.image, class: 'team_image' %>
+      <%= bet.first_team_score %> x
+      <%= bet.second_team_score %>
+      <%= image_tag bet.game.second_team.image, class: 'team_image' %>
+    </div>
+  <% end %>
+</div>

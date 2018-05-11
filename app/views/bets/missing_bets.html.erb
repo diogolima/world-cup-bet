@@ -1,0 +1,19 @@
+<%= form_for @all_bets, url: { action: "create_bets" }, html: { multipart: true } do |f| %>
+  <% @all_bets.each do |bet| %>
+    <%= fields_for 'bets[]', bet,  include_id: true do |b| %>
+      <%= b.hidden_field :game_id, value: bet.game_id %>
+      <%= b.hidden_field :first_team_id, value: bet.game.first_team.id %>
+      <%= b.hidden_field :second_team_id, value: bet.game.second_team_id %>
+      <div class="game">
+        <%= image_tag bet.game.first_team.image, class: 'team_image' %>
+        <%= b.number_field :first_team_score, in: 0..22 %> x
+        <%= b.number_field :second_team_score, in: 0..22 %>
+        <%= image_tag bet.game.second_team.image, class: 'team_image' %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="actions">
+    <%= f.submit 'Create Bets' %>
+  </div>
+<% end %>
+<%= link_to 'Back', bets_path %>

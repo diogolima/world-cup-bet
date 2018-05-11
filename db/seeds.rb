@@ -10,15 +10,21 @@ Team.destroy_all
 Tournament.destroy_all
 
 @world_cup_national_teams = [
-  'Russia', 'Egypt', 'Saudi Arabia', 'Uruguay', #Group A
-  'Portugal', 'Spain', 'Morocco', 'IR Iran', #Group B
-  'France', 'Australia', 'Peru', 'Denmark', #Group C
-  'Argentina', 'Iceland', 'Croatia', 'Nigeria', #Group D
-  'Brazil', 'Switzerland', 'Costa Rica', 'Serbia', #Group E
-  'Germany', 'Mexico', 'Sweden', 'Korea Republic', #Group F
-  'Belgium', 'Panama', 'Tunisia', 'England', #Group G
-  'Poland', 'Senegal', 'Colombia', 'Japan' #Group H
+  'Russia', 'Egypt', 'Saudi Arabia', 'Uruguay', #Group A -3
+  'Portugal', 'Spain', 'Morocco', 'IR Iran', #Group B - 7
+  'France', 'Australia', 'Peru', 'Denmark', #Group C - 11
+  'Argentina', 'Iceland', 'Croatia', 'Nigeria', #Group D - 15
+  'Brazil', 'Switzerland', 'Costa Rica', 'Serbia', #Group E - 19
+  'Germany', 'Mexico', 'Sweden', 'Korea Republic', #Group F - 23
+  'Belgium', 'Panama', 'Tunisia', 'England', #Group G - 27
+  'Poland', 'Senegal', 'Colombia', 'Japan' #Group H - 31
 ]
+@game_order = [
+  0,2,1,3,6,7,4,5,8,9,12,13,10,11,14,15,18,19,20,21,16,17,22,23,24,25,26,27,30,31,28,29, #round1
+  0,1,4,6,3,2,7,5,11,9,8,10,12,14,16,18,15,13,19,17,24,26,23,21,20,22,27,25,31,29,28,30, #round2
+  2,1,3,0,7,4,5,6,9,10,11,8,15,12,16,17,23,20,21,22,17,18,19,16,29,30,31,28,27,24,25,26
+]
+
 @tournament_name = {name: 'World Cup 2018 - Russia',
                     description: 'The 2018 FIFA World Cup will be the 21st FIFA World Cup,
                     a quadrennial international football tournament contested by the men\'s
@@ -63,3 +69,303 @@ end
     )
   )
 end
+
+
+#World Cup Russia
+#Round 1
+
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Russia').id,
+  second_team_id: Team.find_by(name: 'Saudi Arabia').id,
+  date: DateTime.new(2018,06,14)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Egypt').id,
+  second_team_id: Team.find_by(name: 'Uruguay').id,
+  date: DateTime.new(2018,06,15)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Morocco').id,
+  second_team_id: Team.find_by(name: 'IR Iran').id,
+  date: DateTime.new(2018,06,15)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Portugal').id,
+  second_team_id: Team.find_by(name: 'Spain').id,
+  date: DateTime.new(2018,06,15)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'France').id,
+  second_team_id: Team.find_by(name: 'Australia').id,
+  date: DateTime.new(2018,06,16)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Argentina').id,
+  second_team_id: Team.find_by(name: 'Iceland').id,
+  date: DateTime.new(2018,06,16)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Peru').id,
+  second_team_id: Team.find_by(name: 'Denmark').id,
+  date: DateTime.new(2018,06,16)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Croatia').id,
+  second_team_id: Team.find_by(name: 'Nigeria').id,
+  date: DateTime.new(2018,06,16)
+)
+
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Costa Rica').id,
+  second_team_id: Team.find_by(name: 'Serbia').id,
+  date: DateTime.new(2018,06,17)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Germany').id,
+  second_team_id: Team.find_by(name: 'Mexico').id,
+  date: DateTime.new(2018,06,17)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Brazil').id,
+  second_team_id: Team.find_by(name: 'Switzerland').id,
+  date: DateTime.new(2018,06,17)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Sweden').id,
+  second_team_id: Team.find_by(name: 'Korea Republic').id,
+  date: DateTime.new(2018,06,18)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Belgium').id,
+  second_team_id: Team.find_by(name: 'Panama').id,
+  date: DateTime.new(2018,06,18)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Tunisia').id,
+  second_team_id: Team.find_by(name: 'England').id,
+  date: DateTime.new(2018,06,18)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Colombia').id,
+  second_team_id: Team.find_by(name: 'Japan').id,
+  date: DateTime.new(2018,06,19)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Poland').id,
+  second_team_id: Team.find_by(name: 'Senegal').id,
+  date: DateTime.new(2018,06,19)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Russia').id,
+  second_team_id: Team.find_by(name: 'Egypt').id,
+  date: DateTime.new(2018,06,19)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Portugal').id,
+  second_team_id: Team.find_by(name: 'Morocco').id,
+  date: DateTime.new(2018,06,20)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Uruguay').id,
+  second_team_id: Team.find_by(name: 'Saudi Arabia').id,
+  date: DateTime.new(2018,06,20)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'IR Iran').id,
+  second_team_id: Team.find_by(name: 'Spain').id,
+  date: DateTime.new(2018,06,20)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Denmark').id,
+  second_team_id: Team.find_by(name: 'Australia').id,
+  date: DateTime.new(2018,06,21)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'France').id,
+  second_team_id: Team.find_by(name: 'Peru').id,
+  date: DateTime.new(2018,06,21)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Argentina').id,
+  second_team_id: Team.find_by(name: 'Croatia').id,
+  date: DateTime.new(2018,06,21)
+)
+
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Brazil').id,
+  second_team_id: Team.find_by(name: 'Costa Rica').id,
+  date: DateTime.new(2018,06,22)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Nigeria').id,
+  second_team_id: Team.find_by(name: 'Iceland').id,
+  date: DateTime.new(2018,06,22)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Serbia').id,
+  second_team_id: Team.find_by(name: 'Switzerland').id,
+  date: DateTime.new(2018,06,22)
+)
+
+
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Belgium').id,
+  second_team_id: Team.find_by(name: 'Tunisia').id,
+  date: DateTime.new(2018,06,23)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Korea Republic').id,
+  second_team_id: Team.find_by(name: 'Mexico').id,
+  date: DateTime.new(2018,06,23)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Germany').id,
+  second_team_id: Team.find_by(name: 'Sweden').id,
+  date: DateTime.new(2018,06,23)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'England').id,
+  second_team_id: Team.find_by(name: 'Panama').id,
+  date: DateTime.new(2018,06,24)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Japan').id,
+  second_team_id: Team.find_by(name: 'Senegal').id,
+  date: DateTime.new(2018,06,24)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Poland').id,
+  second_team_id: Team.find_by(name: 'Colombia').id,
+  date: DateTime.new(2018,06,24)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Saudi Arabia').id,
+  second_team_id: Team.find_by(name: 'Egypt').id,
+  date: DateTime.new(2018,06,25)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Uruguay').id,
+  second_team_id: Team.find_by(name: 'Russia').id,
+  date: DateTime.new(2018,06,25)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Spain').id,
+  second_team_id: Team.find_by(name: 'Morocco').id,
+  date: DateTime.new(2018,06,25)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'IR Iran').id,
+  second_team_id: Team.find_by(name: 'Portugal').id,
+  date: DateTime.new(2018,06,25)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Australia').id,
+  second_team_id: Team.find_by(name: 'Peru').id,
+  date: DateTime.new(2018,06,26)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Denmark').id,
+  second_team_id: Team.find_by(name: 'France').id,
+  date: DateTime.new(2018,06,26)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Nigeria').id,
+  second_team_id: Team.find_by(name: 'Argentina').id,
+  date: DateTime.new(2018,06,26)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Iceland').id,
+  second_team_id: Team.find_by(name: 'Croatia').id,
+  date: DateTime.new(2018,06,26)
+)
+
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Korea Republic').id,
+  second_team_id: Team.find_by(name: 'Germany').id,
+  date: DateTime.new(2018,06,27)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Mexico').id,
+  second_team_id: Team.find_by(name: 'Sweden').id,
+  date: DateTime.new(2018,06,27)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Serbia').id,
+  second_team_id: Team.find_by(name: 'Brazil').id,
+  date: DateTime.new(2018,06,27)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Switzerland').id,
+  second_team_id: Team.find_by(name: 'Costa Rica').id,
+  date: DateTime.new(2018,06,27)
+)
+
+
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Japan').id,
+  second_team_id: Team.find_by(name: 'Poland').id,
+  date: DateTime.new(2018,06,28)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Senegal').id,
+  second_team_id: Team.find_by(name: 'Colombia').id,
+  date: DateTime.new(2018,06,28)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'England').id,
+  second_team_id: Team.find_by(name: 'Belgium').id,
+  date: DateTime.new(2018,06,28)
+)
+Game.create!(
+  tournament_id: Tournament.first.id,
+  first_team_id: Team.find_by(name: 'Panama').id,
+  second_team_id: Team.find_by(name: 'Tunisia').id,
+  date: DateTime.new(2018,06,28)
+)

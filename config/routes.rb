@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   resources :tournaments
   resources :teams
   resources :games
+  resources :bets
+  post 'bets/missing_bets' => 'bets#missing_bets'
+  post 'bets/create_bets' => 'bets#create_bets'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
