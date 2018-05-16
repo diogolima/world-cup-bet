@@ -2,6 +2,8 @@ class GamesController < ApplicationController
 before_action :set_tournaments, only: [:new, :create, :edit, :update]
 before_action :set_teams, only: [:new, :create, :edit, :update]
 before_action :set_game, only: [:show, :edit, :update, :destroy]
+before_action :authenticate_user!, except: [:show, :index]
+
 
   def index
     @games = Game.all

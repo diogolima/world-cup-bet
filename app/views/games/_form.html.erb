@@ -19,7 +19,7 @@
     <%= f.select :first_team_id, @teams.collect {|team| [team.name, team.id]}%>
   </div>
   <div class="field">
-    <%= f.label :first_team %>
+    <%= f.label :first_team_score %>
     <%= f.number_field :score_first_team, in: 0..22 %>
   </div>
   <div class="field">
@@ -27,7 +27,7 @@
     <%= f.select :second_team_id, @teams.collect {|team| [team.name, team.id]}%>
   </div>
   <div class="field">
-    <%= f.label :second_team %>
+    <%= f.label :second_team_score %>
     <%= f.number_field :score_second_team, in: 0..20 %>
   </div>
   <div class="field">

@@ -1,36 +1,49 @@
 <div>
 <h1>All Games</h1>
 </div>
-<div>
-  <%= link_to 'New', new_game_path %>
-</div>
+<% if current_user.admin %>
+  <div>
+    <%= link_to 'New', new_game_path %>
+  </div>
+<% end %>
 <div>
   <div class="table-responsive">
-    <table class="table">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><strong>Tournament:</strong></th>
+          <th><%= @games.first.tournament.name %></th>
+          <th></th>
+          <th></th>
+          <th>Date</th>
+        </tr>
+      </thead>
       <tbody>
+
         <% @games.each_with_index do |game, index| %>
           <tr>
-            <th scope="row"><%= index + 1 %></th>
-            <td><strong>Tournament:</strong></td>
-            <td><%= game.tournament.name %></td>
-            <td><strong>Date:</strong></td>
-            <td><%= game.date %></td>
+            <th scope="row" class='col-sm-1'>Game #<%= index + 1 %></th>
+            <td class='col-sm-5'><%= image_tag game.first_team.image, class: 'team_image' %></td>
+            <td class='middle-align col-sm-2'>
+              <% if !game.score_first_team.blank? %>
+                  <%= game.score_first_team %>
+                  <strong>X</strong>
+                  <%= game.score_second_team %>
+                <% else %>
+                  <strong> Waiting game </strong>
+                <% end %>
+            </td>
+            <td class='col-sm-5'><%= image_tag game.second_team.image, class: 'team_image' %></td>
+            <td class='middle-align col-sm-1'><%= game.date.strftime("%d/%m/%Y") %></td>
           </tr>
-          <tr>
-            <td><%= image_tag game.first_team.image, class: 'team_image' %></td>
-            <th>
-              <%= game.score_first_team %>
-              <strong>X</strong>
-              <%= game.score_second_team %>
-            </th>
-            <td><%= image_tag game.second_team.image, class: 'team_image' %></td>
+          <% if current_user.admin %>
             <tr>
               <td>
                 <%= link_to 'Edit', edit_game_path(game) %>
                 <%= link_to 'Delete', game_path(game), method: :delete, data: { confirm: 'Are you sure?' } %>
               </td>
             </tr>
-          </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
