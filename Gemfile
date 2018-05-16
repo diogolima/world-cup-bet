@@ -41,6 +41,7 @@ group :development, :test do
   gem 'selenium-webdriver'
 
   gem "database_cleaner"
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
   gem 'rspec-rails', '~> 3.7'
   gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
 end
@@ -59,3 +60,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'paperclip', '~> 5.0'
+
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'jquery-rails'
