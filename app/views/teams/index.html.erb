@@ -1,15 +1,11 @@
 <div>
 <h1>All Teams</h1>
 </div>
-<div>
+<div class="table-responsive">
   <% @teams.each do |team| %>
-  <div>
-    <div>
-      <figure>
-        <%= link_to (image_tag team.image.url(:thumb), class: 'image'), team %>
-        <p><figcaption><%= team.name %></figcaption></p>
-      </figure>
-    </div>
+  <div class='col-md-3 team-pad'>
+    <%= link_to (image_tag team.image.url, class: 'image'), team %>
+    <%= team.name %>
   </div>
   <% end %>
 </div>
