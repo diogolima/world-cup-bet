@@ -1,12 +1,11 @@
 class GamesController < ApplicationController
-before_action :set_tournaments, only: [:new, :create, :edit, :update]
 before_action :set_teams, only: [:new, :create, :edit, :update]
 before_action :set_game, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!, except: [:show, :index]
 
 
   def index
-    @games = Game.all
+    @games = Game.all if @games.blank?
   end
 
   def show
@@ -47,6 +46,17 @@ before_action :authenticate_user!, except: [:show, :index]
     end
   end
 
+  def per_tournament
+    @games = Game.find_by(tournament_id: params[:tournament_id])
+    respond_to do |format|
+      if @games.blank?
+        format.html { redirect_to root_path, notice: 'This tournament does not have games.' }
+      else
+        format.html { redirect_to games_path, notice: 'This tournament does not have games.' }
+      end
+    end
+  end
+
   private
   def game_params
     params.require(:game).permit(:date, :first_team_id, :second_team_id, :score_first_team, :score_second_team, :tournament_id)
@@ -58,9 +68,5 @@ before_action :authenticate_user!, except: [:show, :index]
 
   def set_teams
     @teams = Team.all
-  end
-
-  def set_tournaments
-    @tournaments = Tournament.all
   end
 end

@@ -1,5 +1,4 @@
 class TournamentsController < ApplicationController
-before_action :set_tournament, only: [:show, :edit, :update, :destroy]
 
   def index
     @tournaments = Tournament.all
@@ -51,10 +50,6 @@ before_action :set_tournament, only: [:show, :edit, :update, :destroy]
   private
   def tournament_params
     params.require(:tournament).permit(:name, :description, :image)
-  end
-
-  def set_tournament
-    @tournament = Tournament.find(params[:id])
   end
 
 end

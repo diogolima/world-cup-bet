@@ -1,6 +1,5 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
-  before_action :set_tournament, only: [:index, :find]
 
   def index
     @bets = current_user.bets
@@ -75,10 +74,6 @@ class BetsController < ApplicationController
   private
   def set_bet
     @bet = Bet.find(params[:id])
-  end
-
-  def set_tournament
-    @tournaments = Tournament.find(Game.all.distinct.pluck(:tournament_id))
   end
 
   def bet_params
