@@ -2,6 +2,9 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.describe GamesController, type: :controller do
+  before(:each) do
+    sign_in create(:user)
+  end
 
   describe 'GET #index' do
     it 'has a 200 status' do
