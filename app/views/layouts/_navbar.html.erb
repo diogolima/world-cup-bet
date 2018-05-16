@@ -1,0 +1,35 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to 'Bets', root_path, class: 'navbar-brand' %>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-menu">
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="collapse-menu">
+      <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to 'Teams', teams_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Tournaments', tournaments_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Games', games_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'My bets', bets_path %>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to current_user.name, edit_user_registration_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <li><%= link_to "Login", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
