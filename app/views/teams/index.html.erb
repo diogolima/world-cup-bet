@@ -9,6 +9,8 @@
   </div>
   <% end %>
 </div>
-<div>
-  <%= link_to 'New', new_team_path %>
-</div>
+<% if !current_user.blank? && current_user.admin %>
+  <div>
+    <%= link_to 'New', new_team_path %>
+  </div>
+<% end %>

@@ -1,7 +1,9 @@
-<div>
-<h1>All Tournaments created</h1>
+
+<div class="jumbotron">
+<h2>All Tournaments</h1>
+<p>Those are all tournaments availables in the system.</p>
 </div>
-<div>
+<div class="table-responsive">
   <% @tournaments.each do |tournament| %>
   <div>
     <div>
@@ -14,6 +16,8 @@
   </div>
   <% end %>
 </div>
-<div>
-  <%= link_to 'New', new_tournament_path %>
-</div>
+<% if !current_user.blank? && current_user.admin %>
+  <div>
+    <%= link_to 'New', new_tournament_path %>
+  </div>
+<% end %>

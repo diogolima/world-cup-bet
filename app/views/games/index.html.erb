@@ -1,7 +1,7 @@
 <div>
 <h1>All Games</h1>
 </div>
-<% if current_user.admin %>
+<% if !current_user.blank? && current_user.admin %>
   <div>
     <%= link_to 'New', new_game_path %>
   </div>
