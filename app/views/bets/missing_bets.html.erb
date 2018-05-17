@@ -1,35 +1,35 @@
-<div>
-  <div class="table-responsive bet-table">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th><strong>Tournament:</strong></th>
-          <th colspan="2"><%= @all_bets.first.game.tournament.name %></th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= form_for @all_bets, url: { action: "create_bets" }, html: { multipart: true } do |f| %>
-          <% @all_bets.each do |bet| %>
+<%= form_for @all_bets, url: { action: "create_bets" }, html: { multipart: true } do |f| %>
+  <div>
+    <div class="create-bets">
+      <%= f.submit 'Create Bets', class: 'btn btn-primary'%>
+      <%= link_to 'Back', bets_path, class: 'btn btn-primary' %>
+    </div>
+    <div class="table-responsive bet-table">
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <%= fields_for 'bets[]', bet,  include_id: true do |b| %>
-              <%= b.hidden_field :game_id, value: bet.game_id %>
-              <%= b.hidden_field :first_team_id, value: bet.game.first_team.id %>
-              <%= b.hidden_field :second_team_id, value: bet.game.second_team_id %>
-              <div class="game">
-                <td class='col-sm-4'><%= image_tag bet.game.first_team.image, class: 'team_image' %></td>
-                <td class='middle-align col-sm-3'><%= b.number_field :first_team_score, in: 0..22 %> <strong> x </strong>
-                  <%= b.number_field :second_team_score, in: 0..22 %> </td>
-                <td class='col-sm-4'><%= image_tag bet.game.second_team.image, class: 'team_image' %></td>
-                <td class='middle-align col-sm-1'><%= bet.game.date.strftime("%d/%m/%Y") %></td>
-              </div>
-            <% end %>
+            <th><strong>Tournament:</strong></th>
+            <th colspan="2"><%= @all_bets.first.game.tournament.name %></th>
+            <th>Date</th>
           </tr>
-          <% end %>
-          <div class="actions">
-            <%= f.submit 'Create Bets' %>
-          </div>
-        <% end %>
-      </tbody></table></div>
-<%= link_to 'Back', bets_path %>
-</div>
+        </thead>
+          <tbody>
+            <% @all_bets.each do |bet| %>
+              <tr>
+                <%= fields_for 'bets[]', bet,  include_id: true do |b| %>
+                  <%= b.hidden_field :game_id, value: bet.game_id %>
+                  <%= b.hidden_field :first_team_id, value: bet.game.first_team.id %>
+                  <%= b.hidden_field :second_team_id, value: bet.game.second_team_id %>
+                    <td class='col-sm-4'><%= image_tag bet.game.first_team.image, class: 'team_image img-rounded' %></td>
+                    <td class='middle-align col-sm-3'><%= b.number_field :first_team_score, in: 0..22 %> <strong> x </strong>
+                      <%= b.number_field :second_team_score, in: 0..22 %> </td>
+                    <td class='col-sm-4'><%= image_tag bet.game.second_team.image, class: 'team_image img-rounded' %></td>
+                    <td class='middle-align col-sm-1'><%= bet.game.date.strftime("%d/%m/%Y") %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

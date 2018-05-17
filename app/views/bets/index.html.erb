@@ -24,10 +24,10 @@
       <tbody>
         <% @bets.each do |bet| %>
           <tr>
-            <td class='col-sm-4'><%= image_tag bet.game.first_team.image, class: 'team_image' %></td>
+            <td class='col-sm-4'><%= image_tag bet.game.first_team.image, class: 'team_image img-rounded' %></td>
             <td class='middle-align col-sm-3'><%= bet.first_team_score %> x
             <%= bet.second_team_score %></td>
-            <td class='col-sm-4'><%= image_tag bet.game.second_team.image, class: 'team_image' %><td>
+            <td class='col-sm-4'><%= image_tag bet.game.second_team.image, class: 'team_image img-rounded' %><td>
             <td class='middle-align col-sm-1'><%= bet.game.date.strftime("%d/%m/%Y") %></td>
             <td class='middle-align'><%= link_to 'Edit', edit_bet_path(bet) %></td>
           </tr>
