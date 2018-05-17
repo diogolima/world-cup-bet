@@ -4,7 +4,7 @@
 <div class="table-responsive">
   <% @teams.each do |team| %>
   <div class='col-md-3 team-pad'>
-    <%= link_to (image_tag team.image.url, class: 'image'), team %>
+    <%= link_to (image_tag team.image.url, class: 'image img-rounded'), team %>
     <%= team.name %>
   </div>
   <% end %>
