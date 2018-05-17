@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'tournaments#index'
   get 'games/per_tournament' => 'games#per_tournament'
-  post 'bets/missing_bets' => 'bets#missing_bets'
+  get 'bets/missing_bets' => 'bets#missing_bets'
   post 'bets/create_bets' => 'bets#create_bets'
   devise_for :users
   resources :tournaments
