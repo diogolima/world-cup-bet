@@ -1,5 +1,6 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
     @bets = current_user.bets
