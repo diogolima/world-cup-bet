@@ -8,13 +8,13 @@
           <td><%= @game.date %></td>
         </tr>
         <tr>
-          <td><%= image_tag @game.first_team.image, class: 'team_image' %></td>
+          <td><%= image_tag @game.first_team.image, class: 'team_image' , title: game.first_team.name%></td>
           <th>
             <%= @game.score_first_team %>
             <strong>X</strong>
             <%= @game.score_second_team %>
           </th>
-          <td><%= image_tag @game.second_team.image, class: 'team_image' %></td>
+          <td><%= image_tag @game.second_team.image, class: 'team_image' , title: game.second_team.name%></td>
           <tr>
             <td>
               <%= link_to 'Back', games_path %>

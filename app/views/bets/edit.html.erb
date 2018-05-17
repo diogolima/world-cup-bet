@@ -14,10 +14,10 @@
   <div class="table-responsive bet-table">
     <table class="table table-striped">
   <div class="game">
-    <td class='col-sm-4'><%= image_tag @bet.game.first_team.image, class: 'team_image img-rounded' %></td>
+    <td class='col-sm-4'><%= image_tag @bet.game.first_team.image, class: 'team_image img-rounded', title: bet.game.first_team.name %></td>
     <td class='middle-align col-sm-3'><%= f.number_field :first_team_score, in: 0..22 %> <strong> x </strong>
       <%= f.number_field :second_team_score, in: 0..22 %> </td>
-    <td class='col-sm-4'><%= image_tag @bet.game.second_team.image, class: 'team_image img-rounded' %></td>
+    <td class='col-sm-4'><%= image_tag @bet.game.second_team.image, class: 'team_image img-rounded', title: bet.game.second_team.name %></td>
     <td class='middle-align col-sm-1'><%= @bet.game.date.strftime("%d/%m/%Y") %></td>
   </div>
 
