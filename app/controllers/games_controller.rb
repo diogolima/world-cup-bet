@@ -50,7 +50,11 @@ before_action :authenticate_user!, except: [:show, :index]
     @games = Game.find_by(tournament_id: params[:tournament_id])
     respond_to do |format|
       if @games.blank?
-        format.html { redirect_to root_path, notice: 'This tournament does not have games.' }
+        if !current_user.admin
+          format.html { redirect_to root_path, notice: 'This tournament does not have games.' }
+        else current_user.admin
+          format.html { redirect_to new_game_url }
+        end
       else
         format.html { redirect_to games_path }
       end
