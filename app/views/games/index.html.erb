@@ -12,19 +12,17 @@
       <thead>
         <tr>
           <th><strong>Tournament:</strong></th>
-          <th><%= @games.first.tournament.name %></th>
-          <th></th>
+          <th colspan="2"><%= @games.first.tournament.name %></th>
           <th></th>
           <th>Date</th>
         </tr>
       </thead>
       <tbody>
-
         <% @games.each_with_index do |game, index| %>
           <tr>
             <th scope="row" class='col-sm-1'>Game #<%= index + 1 %></th>
-            <td class='col-sm-5'><%= image_tag game.first_team.image, class: 'team_image' %></td>
-            <td class='middle-align col-sm-2'>
+            <td class='col-sm-1'><%= image_tag game.first_team.image, class: 'team_image img-rounded' %></td>
+            <td class='middle-align col-sm-1'>
               <% if !game.score_first_team.blank? %>
                   <%= game.score_first_team %>
                   <strong>X</strong>
@@ -33,7 +31,7 @@
                   <strong> Waiting game </strong>
                 <% end %>
             </td>
-            <td class='col-sm-5'><%= image_tag game.second_team.image, class: 'team_image' %></td>
+            <td class='col-sm-1'><%= image_tag game.second_team.image, class: 'team_image img-rounded' %></td>
             <td class='middle-align col-sm-1'><%= game.date.strftime("%d/%m/%Y") %></td>
           </tr>
           <% if current_user.admin %>

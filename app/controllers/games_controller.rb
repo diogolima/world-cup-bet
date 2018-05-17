@@ -42,7 +42,7 @@ before_action :authenticate_user!, except: [:show, :index]
   def destroy
     @game.destroy
     respond_to do |format|
-      format.html { redirect_to games_url, notice: 'Game was successfully created.' }
+      format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
     end
   end
 
