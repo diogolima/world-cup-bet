@@ -15,7 +15,7 @@ RSpec.describe GamesController, type: :controller do
     it 'GET all games' do
       games
       get :index
-      expect(assigns[:games]).to eq(Game.all)
+      expect(assigns[:games]).to eq(Game.all.order(:date))
     end
   end
 
