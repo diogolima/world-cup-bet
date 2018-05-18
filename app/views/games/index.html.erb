@@ -23,7 +23,7 @@
             <th scope="row" class='col-sm-1'>Game #<%= index + 1 %></th>
             <td class='col-sm-1'><%= image_tag game.first_team.image, class: 'team_image img-rounded', title: game.first_team.name %></td>
             <td class='middle-align col-sm-1'>
-              <% if !game.score_first_team.blank? %>
+              <% if !game.score_first_team.blank? &&  !game.score_second_team.blank?%>
                   <%= game.score_first_team %>
                   <strong>X</strong>
                   <%= game.score_second_team %>
