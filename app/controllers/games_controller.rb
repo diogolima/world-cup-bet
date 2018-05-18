@@ -2,10 +2,10 @@ class GamesController < ApplicationController
 before_action :set_teams, only: [:new, :create, :edit, :update]
 before_action :set_game, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!, except: [:show, :index]
-
+after_action :calculate_result, only: [:update, :create]
 
   def index
-    @games = Game.all if @games.blank?
+    @games = Game.all.order(:date) if @games.blank?
   end
 
   def show
@@ -47,7 +47,7 @@ before_action :authenticate_user!, except: [:show, :index]
   end
 
   def per_tournament
-    @games = Game.find_by(tournament_id: params[:tournament_id])
+    @games = Game.order(:date).find_by(tournament_id: params[:tournament_id])
     respond_to do |format|
       if @games.blank?
         if !current_user.admin
@@ -72,5 +72,11 @@ before_action :authenticate_user!, except: [:show, :index]
 
   def set_teams
     @teams = Team.all
+  end
+
+  def calculate_result
+    if !@game.score_first_team.blank? && !@game.score_second_team.blank?
+      CalculateBetResultJob.perform_now @game
+    end
   end
 end
