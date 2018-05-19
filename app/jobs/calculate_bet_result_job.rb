@@ -2,7 +2,7 @@ class CalculateBetResultJob < ApplicationJob
   queue_as :default
 
   def perform(game)
-    bets = Bet.all
+    bets = Bet.where(game_id: game.id)
     bets.each do |bet|
       bet.bet_score = 0
       if bet.first_team_score == game.score_first_team
