@@ -12,7 +12,11 @@
     <%= render 'layouts/navbar' %>
     <div class="container">
       <% flash.each do |name, msg| %>
-        <%= content_tag(:div, msg, class: 'alert alert-info') %>
+      <% flashClass = 'alert alert-info' %>
+      <% if flash[:alert] %>
+        <% flashClass = 'alert alert-danger' %>
+      <% end %>
+        <%= content_tag(:div, msg, class: flashClass) %>
       <% end %>
       <%= yield %>
     </div>
