@@ -1,0 +1,43 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><strong>Tournament:</strong></th>
+        <th colspan="2"><%= @games.first.tournament.name %></th>
+        <th></th>
+        <th>Date</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @games.each_with_index do |game, index| %>
+        <tr>
+          <th scope="row" class='col-sm-1'>Game #<%= index + 1 %></th>
+          <td class='col-sm-1'><%= image_tag game.first_team.image, class: 'team_image img-rounded', title: game.first_team.name %></td>
+          <td class='middle-align col-sm-1'>
+            <mark>
+              <%= game.score_first_team %>
+              <strong>X</strong>
+              <%= game.score_second_team %>
+            </mark>
+          </td>
+          <td class='col-sm-1'><%= image_tag game.second_team.image, class: 'team_image img-rounded', title: game.second_team.name  %></td>
+          <td class='middle-align col-sm-1'><%= game.date.strftime("%d/%m/%Y") %></td>
+          <td class='middle-align'><%= @bets.where(game_id: game.id).first.bet_score %> </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>User bet: </td>
+          <td class='middle-align col-sm-1'>
+            <mark>
+              <%= @bets.where(game_id: game.id).first.first_team_score %>
+                <strong>X</strong>
+              <%= @bets.where(game_id: game.id).first.second_team_score %>
+            </mark>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'Back', rank_path(tournament_id: @games.first.tournament.id) %>
+</div>

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'games/per_tournament' => 'games#per_tournament'
   get 'bets/missing_bets' => 'bets#missing_bets'
   post 'bets/create_bets' => 'bets#create_bets'
+  get 'rank' => 'rank#index'
+  get 'scored_bets' => 'rank#scored_bets'
   devise_for :users
   resources :tournaments
   resources :teams
