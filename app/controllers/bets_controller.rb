@@ -3,7 +3,7 @@ class BetsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @bets = current_user.bets
+    @bets = current_user.bets.sort_by{|bet| bet.game.date}
     @tournament_missing_bets = current_user.missing_bets_tournament(@tournaments)
   end
 
