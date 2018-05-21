@@ -12,7 +12,7 @@
   <% end %>
   <div class="field">
     <%= f.label :tournament %>
-    <%= @game.tournament.name %>
+    <%= f.text_field :tournament, readonly: true, value: @game.tournament.name %>
 
   </div>
   <div class="field">
