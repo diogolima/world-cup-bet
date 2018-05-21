@@ -5,7 +5,7 @@
   <%= @team.name %> <br>
 </p>
 
-<% if !current_user.nil? && current_user.admin %>
+<% if user_admin %>
   <%= link_to 'Edit', edit_team_path(@team) %>
   <%= link_to 'Delete', team_path, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

@@ -6,7 +6,7 @@
   <%= @tournament.description %>
 </p>
 
-<% if !current_user.nil? && current_user.admin %>
+<% if user_admin %>
   <%= link_to 'Edit', edit_tournament_path(@tournament) %>
   <%= link_to 'Delete', tournament_path, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

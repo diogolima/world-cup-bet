@@ -16,7 +16,7 @@
   </div>
   <% end %>
 </div>
-<% if !current_user.blank? && current_user.admin %>
+<% if user_admin %>
   <div>
     <%= link_to 'New', new_tournament_path %>
   </div>
