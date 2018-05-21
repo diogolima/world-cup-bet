@@ -12,7 +12,8 @@
   <% end %>
   <div class="field">
     <%= f.label :tournament %>
-    <%= f.select :tournament_id, @tournaments.collect {|tournament| [tournament.name, tournament.id]}%>
+    <%= @game.tournament.name %>
+
   </div>
   <div class="field">
     <%= f.label :first_team %>
@@ -32,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :date %>
-    <%= f.date_field :date %>
+    <%= f.datetime_field :date %>
   </div>
   <div class="actions">
     <%= f.submit %>

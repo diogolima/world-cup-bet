@@ -25,7 +25,7 @@ after_action :calculate_result, only: [:update, :create]
   end
 
   def new
-    @game = Game.new
+    @game = Game.new(tournament_id: params[:tournament_id])
   end
 
   def create
@@ -52,8 +52,8 @@ after_action :calculate_result, only: [:update, :create]
       if @games.blank?
         if !current_user.admin
           format.html { redirect_to root_path, notice: 'This tournament does not have games.' }
-        else current_user.admin
-          format.html { redirect_to new_game_url }
+        else
+          format.html { redirect_to new_game_url tournament_id: params[:tournament_id]}
         end
       else
         format.html { redirect_to games_path }

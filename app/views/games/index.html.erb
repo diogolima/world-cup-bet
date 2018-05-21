@@ -32,7 +32,7 @@
                 <% end %>
             </td>
             <td class='col-sm-1'><%= image_tag game.second_team.image, class: 'team_image img-rounded', title: game.second_team.name  %></td>
-            <td class='middle-align col-sm-1'><%= game.date.strftime("%d/%m/%Y") %></td>
+            <td class='middle-align col-sm-1'><%= game.date.strftime("%d/%m/%Y at %I:%M%p") %></td>
           </tr>
           <% if current_user.admin %>
             <tr>
