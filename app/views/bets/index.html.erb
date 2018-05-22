@@ -1,38 +1,54 @@
 <div>
-<h1>All Bets</h1>
-<% if !@tournament_missing_bets.blank? %>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tournaments <span class="caret"></span></a>
-  <ul class="dropdown-menu">
-    <% @tournament_missing_bets.each do |tournament| %>
-      <li><%= link_to tournament.name, bets_missing_bets_path(tournament: {id: tournament.id})  %></li>
-    <% end %>
-  </ul>
-</li>
-<% end %>
-</div>
-<div>
-  <div class="table-responsive bet-table">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th><strong>Tournament:</strong></th>
-          <th colspan="2"><%= @bets.first.game.tournament.name %></th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @bets.each do |bet| %>
-          <tr>
-            <td class='col-sm-4'><%= image_tag bet.game.first_team.image, class: 'team_image img-rounded', title: bet.game.first_team.name %></td>
-            <td class='middle-align col-sm-3'><%= bet.first_team_score %> x
-            <%= bet.second_team_score %></td>
-            <td class='col-sm-4'><%= image_tag bet.game.second_team.image, class: 'team_image img-rounded', title: bet.game.second_team.name %><td>
-            <td class='middle-align col-sm-1'><%= bet.game.date.strftime("%d/%m/%Y") %></td>
-            <td class='middle-align'><%= link_to 'Edit', edit_bet_path(bet) %></td>
-          </tr>
+  <h1><%= @tournament_pick %></h1>
+  <% if !@tournament_missing_bets.blank? %>
+  <li class="dropdown bet-dropdown">
+    <a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Missing bets <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <% @tournament_missing_bets.each do |tournament| %>
+        <li><%= link_to tournament.name, bets_missing_bets_path(tournament: {id: tournament.id})  %></li>
+      <% end %>
+    </ul>
+  </li>
+  <% end %>
+  <div>
+    <li class="dropdown bet-dropdown">
+      <a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My bets <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <% @tournaments.each do |tournament| %>
+          <li><%= link_to tournament.name, bets_path(tournament: {id: tournament.id, name: tournament.name})  %></li>
         <% end %>
-      </tbody>
-    </table>
+      </ul>
+    </li>
   </div>
+</div>
+<div class="bet-table">
+<% if !@bets.blank? %>
+  <div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th><strong>Tournament:</strong></th>
+            <th colspan="2"><%= @bets.first.game.tournament.name %></th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bets.each do |bet| %>
+            <tr>
+              <td class='col-sm-4'><%= image_tag bet.game.first_team.image, class: 'team_image img-rounded', title: bet.game.first_team.name %></td>
+              <td class='middle-align col-sm-3'><%= bet.first_team_score %> x
+              <%= bet.second_team_score %></td>
+              <td class='col-sm-4'><%= image_tag bet.game.second_team.image, class: 'team_image img-rounded', title: bet.game.second_team.name %><td>
+              <td class='middle-align col-sm-1'><%= bet.game.date.strftime("%d/%m/%Y") %></td>
+              <td class='middle-align'><%= link_to 'Edit', edit_bet_path(bet) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <h3> <%= @no_bets_tournament %> </h3>
+<% end %>
 </div>

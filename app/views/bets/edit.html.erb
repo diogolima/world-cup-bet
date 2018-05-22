@@ -3,7 +3,7 @@
 <%= form_for @bet, local: true, html: { multipart: true } do |f| %>
   <% if @bet.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(bet.errors.count, "error") %> prohibited this bet from being saved:</h2>
+      <h2><%= pluralize(@bet.errors.count, "error") %> prohibited this bet from being saved:</h2>
       <ul>
       <% @bet.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -13,16 +13,22 @@
   <% end %>
   <div class="table-responsive bet-table">
     <table class="table table-striped">
-  <div class="game">
-    <td class='col-sm-4'><%= image_tag @bet.game.first_team.image, class: 'team_image img-rounded', title: bet.game.first_team.name %></td>
-    <td class='middle-align col-sm-3'><%= f.number_field :first_team_score, in: 0..22 %> <strong> x </strong>
-      <%= f.number_field :second_team_score, in: 0..22 %> </td>
-    <td class='col-sm-4'><%= image_tag @bet.game.second_team.image, class: 'team_image img-rounded', title: bet.game.second_team.name %></td>
-    <td class='middle-align col-sm-1'><%= @bet.game.date.strftime("%d/%m/%Y") %></td>
+      <thead>
+        <tr>
+          <th><strong>Tournament:</strong></th>
+          <th colspan="2"><%= @bet.game.tournament.name %></th>
+          <th>Date</th>
+        </tr>
+      </thead>
+        <td class='col-sm-4'><%= image_tag @bet.game.first_team.image, class: 'team_image img-rounded', title: @bet.game.first_team.name %></td>
+        <td class='middle-align col-sm-3'><%= f.number_field :first_team_score, in: 0..22%> <strong> x </strong>
+          <%= f.number_field :second_team_score, in: 0..22 %> </td>
+        <td class='col-sm-4'><%= image_tag @bet.game.second_team.image, class: 'team_image img-rounded', title: @bet.game.second_team.name %></td>
+        <td class='middle-align col-sm-1'><%= @bet.game.date.strftime("%d/%m/%Y") %></td>
+    </table>
   </div>
-
-</table></div><div class="actions">
-  <%= f.submit  class: 'btn btn-primary'%>
-  <%= link_to 'Back', bets_path %>
-</div>
+  <div class="actions">
+    <%= f.submit  class: 'btn btn-primary'%>
+    <%= link_to 'Back', bets_path %>
+  </div>
 <% end %>

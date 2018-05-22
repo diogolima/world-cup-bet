@@ -1,9 +1,10 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :tournament_pick, only: [:index]
 
   def index
-    @bets = current_user.bets.sort_by{|bet| bet.game.date}
+    @bets = current_user.get_bets(params[:tournament])
     @tournament_missing_bets = current_user.missing_bets_tournament(@tournaments)
   end
 
@@ -18,9 +19,8 @@ class BetsController < ApplicationController
   end
 
   def missing_bets
-    games = Game.all.where(tournament_id: params[:tournament][:id])
     @bets = current_user.bets.pluck(:game_id)
-    games = games.where.not(id: @bets)
+    games = Game.all.where(tournament_id: params[:tournament][:id]).order(:date).where.not(id: @bets)
     @all_bets = init_bet(games)
     if @all_bets.empty?
       respond_to do |format|
@@ -86,9 +86,14 @@ class BetsController < ApplicationController
     (!bet[:first_team_score].blank? | !bet[:second_team_score].blank?)&&(game.first_team.id == bet[:first_team_id].to_i && game.second_team.id == bet[:second_team_id].to_i)
   end
 
+  def tournament_pick
+    @tournament_pick = params[:tournament]? 'All bets - '+Tournament.where(id: params[:tournament][:id]).first.name+' tournament.' : 'All bets'
+    @no_bets_tournament = params[:tournament]? 'You don\'t have bets for '+Tournament.where(id: params[:tournament][:id]).first.name+' tournament.' : 'You don\'t have any bet yet!'
+  end
+
   def init_bet(games)
     @all_bets = []
-    if games.nil? || games.count > 0
+    if !games.nil? || games.count > 0
       games.each do |game|
         @all_bets.push(Bet.new(game_id: game.id, user_id: current_user.id))
       end

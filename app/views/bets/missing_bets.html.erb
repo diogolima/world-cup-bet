@@ -1,6 +1,6 @@
 <%= form_for @all_bets, url: { action: "create_bets" }, html: { multipart: true } do |f| %>
   <div>
-    <div class="create-bets">
+    <div class="user-bets">
       <%= f.submit 'Create Bets', class: 'btn btn-primary'%>
       <%= link_to 'Back', bets_path, class: 'btn btn-primary' %>
     </div>

@@ -16,4 +16,13 @@ class User < ApplicationRecord
     end
     @tournament_missing_bets
   end
+
+  def get_bets(tournament)
+    @bets = self.bets
+    if tournament && tournament[:id]
+      @bets = @bets.where(game_id: Game.where(tournament_id: tournament[:id]))
+    end
+    @bets = @bets.sort_by{|bet| bet.game.date}
+  end
+
 end
