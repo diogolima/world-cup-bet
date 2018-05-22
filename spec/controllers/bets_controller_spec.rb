@@ -32,7 +32,7 @@ RSpec.describe BetsController, type: :controller do
       bets(Game.all)
       get :index
       expect(response.status).to eq(200)
-      expect(assigns[:bets]).to eq(User.first.bets)
+      expect(assigns[:bets]).to eq(User.first.get_bets)
       expect(assigns[:tournament_missing_bets]).to eq([])
     end
   end

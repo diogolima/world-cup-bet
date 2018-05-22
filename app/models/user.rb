@@ -17,7 +17,7 @@ class User < ApplicationRecord
     @tournament_missing_bets
   end
 
-  def get_bets(tournament)
+  def get_bets(tournament=nil)
     @bets = self.bets
     if tournament && tournament[:id]
       @bets = @bets.where(game_id: Game.where(tournament_id: tournament[:id]))
