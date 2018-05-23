@@ -22,7 +22,7 @@ class RankController < ApplicationController
     @bets = Bet.where(user_id: params[:user_id]).where(game_id: @games.ids)
     if @bets.blank?
       respond_to do |format|
-        format.html { redirect_to rank_url(tournament_id: params[:tournament_id]), alert: 'This user doesn\'t have bets for this tournament' }
+        format.html { redirect_to rank_url(tournament_id: params[:tournament_id]), alert: 'This user doesn\'t have bets for this tournament or no game has happened yet.' }
       end
     end
   end
