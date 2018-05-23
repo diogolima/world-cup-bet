@@ -12,6 +12,11 @@ class BetsController < ApplicationController
   end
 
   def edit
+    if @bet.game.date.to_date <= Date.today
+      respond_to do |format|
+        format.html { redirect_to bets_url, alert: 'You can\'t change your bet on game day.'}
+      end
+    end
   end
 
   def new
@@ -78,12 +83,12 @@ class BetsController < ApplicationController
   end
 
   def bet_params
-    params.require(:bet).permit(:user_id, :game_id, :first_team_score, :second_team_score)
+    params.require(:bet).permit(:game_id, :first_team_score, :second_team_score)
   end
 
   def valid_bet(bet)
-    game = Game.find(bet[:game_id])
-    (!bet[:first_team_score].blank? | !bet[:second_team_score].blank?)&&(game.first_team.id == bet[:first_team_id].to_i && game.second_team.id == bet[:second_team_id].to_i)
+    @game = Game.find(bet[:game_id])
+    (!bet[:first_team_score].blank? && !bet[:second_team_score].blank?)&&(game.first_team.id == bet[:first_team_id].to_i && game.second_team.id == bet[:second_team_id].to_i)
   end
 
   def tournament_pick
