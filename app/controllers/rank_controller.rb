@@ -1,4 +1,5 @@
 class RankController < ApplicationController
+  before_action :set_tournament_rank
 
   def index
     users_ids = Bet.distinct.pluck(:user_id)
@@ -13,7 +14,6 @@ class RankController < ApplicationController
       )
     end
     @all_rank = @all_rank.sort_by {|user| user[:score]}.reverse!
-    @tournament = Tournament.find(params[:tournament_id])
   end
 
   def scored_bets
@@ -25,5 +25,10 @@ class RankController < ApplicationController
         format.html { redirect_to rank_url(tournament_id: params[:tournament_id]), alert: 'This user doesn\'t have bets for this tournament' }
       end
     end
+  end
+
+  private
+  def set_tournament_rank
+    @tournament = Tournament.find(params[:tournament_id])
   end
 end
