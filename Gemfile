@@ -63,3 +63,6 @@ gem 'paperclip', '~> 5.0'
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'jquery-rails'
+
+gem 'wicked_pdf', '~> 1.1'
+gem 'wkhtmltopdf-binary'

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PDF</title>
+  <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+  <%= wicked_pdf_stylesheet_link_tag "application" , media: 'all', 'data-turbolinks-track': 'reload' -%>
+  <%= wicked_pdf_javascript_include_tag "number_pages" %>
+  <%= wicked_pdf_javascript_include_tag "application", 'data-turbolinks-track': 'reload'  %>
+</head>
+<body>
+  <div class='content container'>
+    <%= yield %>
+  </div>
+</body>
+</html>

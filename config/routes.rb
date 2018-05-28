@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'bets/create_bets' => 'bets#create_bets'
   get 'rank' => 'rank#index'
   get 'scored_bets' => 'rank#scored_bets'
+  get 'send_pdf' => 'rank#send_pdf'
   devise_for :users
   resources :tournaments
   resources :teams

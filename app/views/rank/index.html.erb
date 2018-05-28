@@ -19,3 +19,6 @@
     </tbody>
   </table>
 </div>
+<% if current_user && current_user.admin %>
+<%= link_to 'Create PDF document', send_pdf_path(tournament_id: @tournament.id) %>
+<% end %>
