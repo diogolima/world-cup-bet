@@ -1,0 +1,21 @@
+<div class="table-responsive rank-container">
+  <h2><%= @tournament.name %></h2>
+  <table style="width: 420px; border: 1px solid black;">
+    <thead style="display: table-header-group">
+      <tr style="page-break-inside: avoid;">
+        <th style="width: 60px; border: 1px solid black; text-align: center;">Position</th>
+        <th style="width: 300px; border: 1px solid black;"><strong>Name</strong></th>
+        <th style="width: 60px; border: 1px solid black; text-align: center;"><strong>Score</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @all_rank.each_with_index do |rank, index| %>
+        <tr style="page-break-inside: avoid;">
+          <td style="border: 1px solid black; text-align: center;"><%= index + 1 %></td>
+          <td style="border: 1px solid black;"><%= rank[:name] %></td>
+          <td style="border: 1px solid black; text-align: center;"><%= rank[:score] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
