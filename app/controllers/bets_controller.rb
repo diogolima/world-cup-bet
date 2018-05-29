@@ -88,7 +88,7 @@ class BetsController < ApplicationController
 
   def valid_bet(bet)
     @game = Game.find(bet[:game_id])
-    (!bet[:first_team_score].blank? && !bet[:second_team_score].blank?)&&(game.first_team.id == bet[:first_team_id].to_i && game.second_team.id == bet[:second_team_id].to_i)
+    (!bet[:first_team_score].blank? && !bet[:second_team_score].blank?)&&(@game.first_team.id == bet[:first_team_id].to_i && @game.second_team.id == bet[:second_team_id].to_i)
   end
 
   def tournament_pick
