@@ -66,3 +66,5 @@ gem 'jquery-rails'
 
 gem 'wicked_pdf', '~> 1.1'
 gem 'wkhtmltopdf-binary'
+
+gem 'envyable', '~> 1.2', groups: [:development, :test]

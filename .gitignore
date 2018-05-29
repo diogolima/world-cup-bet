@@ -21,3 +21,6 @@
 .DS_Store
 
 /public/system/*
+
+# Don't check in credentials
+config/env.yml
