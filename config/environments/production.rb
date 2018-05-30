@@ -107,7 +107,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.paperclip_defaults = {
-    storage: : :s3,
+    storage: :s3,
     s3_region: 'us-east-2',
     s3_host_name: 's3.us-east-2.amazonaws.com',
     bucket: 'worldcupbet',
