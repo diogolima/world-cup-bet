@@ -15,16 +15,18 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th>Round</th>
           <th><strong>Tournament:</strong></th>
           <th colspan="2"><%= @bet.game.tournament.name %></th>
           <th>Date</th>
         </tr>
       </thead>
-        <td class='col-sm-4'><%= image_tag @bet.game.first_team.image, class: 'team_image img-rounded', title: @bet.game.first_team.name %></td>
-        <td class='middle-align col-sm-3'><%= f.number_field :first_team_score, in: 0..22%> <strong> x </strong>
+        <td class="middle-align col-sm-1"><%= @bet.game.round %></td>
+        <td class="col-sm-3"><%= image_tag @bet.game.first_team.image, class: 'team_image img-rounded', title: @bet.game.first_team.name %></td>
+        <td class="middle-align col-sm-3"><%= f.number_field :first_team_score, in: 0..22%> <strong> x </strong>
           <%= f.number_field :second_team_score, in: 0..22 %> </td>
-        <td class='col-sm-4'><%= image_tag @bet.game.second_team.image, class: 'team_image img-rounded', title: @bet.game.second_team.name %></td>
-        <td class='middle-align col-sm-1'><%= @bet.game.date.strftime("%d/%m/%Y") %></td>
+        <td class="col-sm-3"><%= image_tag @bet.game.second_team.image, class: 'team_image img-rounded', title: @bet.game.second_team.name %></td>
+        <td class="middle-align col-sm-2"><%= @bet.game.date.strftime("%d/%m/%Y") %></td>
     </table>
   </div>
   <div class="actions">

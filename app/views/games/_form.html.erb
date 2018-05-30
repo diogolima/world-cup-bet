@@ -35,6 +35,10 @@
     <%= f.label :date %>
     <%= f.datetime_field :date %>
   </div>
+  <div class="field">
+    <%= f.label :round %>
+    <%= f.text_field :round, value: @game.round %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

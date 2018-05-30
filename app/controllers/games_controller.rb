@@ -63,7 +63,7 @@ after_action :calculate_result, only: [:update, :create]
 
   private
   def game_params
-    params.require(:game).permit(:date, :first_team_id, :second_team_id, :score_first_team, :score_second_team, :tournament_id)
+    params.require(:game).permit(:date, :first_team_id, :second_team_id, :score_first_team, :score_second_team, :round, :tournament_id)
   end
 
   def set_game
