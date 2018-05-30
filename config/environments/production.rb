@@ -108,8 +108,8 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     storage: :s3,
-    s3_region: ENV['REGION']'us-east-1',
-    s3_host_name: ENV['END_POINT']'s3.us-east-1.amazonaws.com',
+    s3_region: ENV['REGION'],
+    s3_host_name: ENV['END_POINT'],
     bucket: 'worldcupbet',
     s3_credentials: {
       access_key_id: ENV['AWS_ACCESS_KEY_ID'],
