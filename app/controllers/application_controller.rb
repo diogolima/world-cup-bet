@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_tournament
+  before_action :set_tournaments
 
   private
-  def set_tournament
+  def set_tournaments
     @tournaments = Tournament.all
   end
 

@@ -47,7 +47,7 @@ after_action :calculate_result, only: [:update, :create]
   end
 
   def per_tournament
-    @games = Game.order(:date).find_by(tournament_id: params[:tournament_id])
+    @games = Game.order(:date).where(tournament_id: params[:tournament_id])
     respond_to do |format|
       if @games.blank?
         if !current_user.admin
@@ -56,7 +56,7 @@ after_action :calculate_result, only: [:update, :create]
           format.html { redirect_to new_game_url tournament_id: params[:tournament_id]}
         end
       else
-        format.html { redirect_to games_path }
+        format.html { render action: :index }
       end
     end
   end

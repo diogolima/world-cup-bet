@@ -1,8 +1,8 @@
 class TournamentsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
-  
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+
   def index
-    @tournaments = Tournament.all
   end
 
   def show
@@ -51,6 +51,10 @@ class TournamentsController < ApplicationController
   private
   def tournament_params
     params.require(:tournament).permit(:name, :description, :image)
+  end
+
+  def set_tournament
+    @tournament = Tournament.find(params[:id])
   end
 
 end
