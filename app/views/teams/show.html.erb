@@ -1,5 +1,5 @@
 <p>
-  <%= image_tag @team.image.url, class: 'team-image' %>
+  <%= image_tag @team.image.url, class: "#{@team.team_type}_team_image" %>
 </p>
 <p>
   <%= @team.name %> <br>

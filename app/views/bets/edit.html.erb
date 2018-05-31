@@ -22,15 +22,15 @@
         </tr>
       </thead>
         <td class="middle-align col-sm-1"><%= @bet.game.round %></td>
-        <td class="col-sm-3"><%= image_tag @bet.game.first_team.image, class: 'team_image img-rounded', title: @bet.game.first_team.name %></td>
+        <td class="col-sm-3"><%= image_tag @bet.game.first_team.image, class: "#{team.type}_team_image img-rounded", title: @bet.game.first_team.name %></td>
         <td class="middle-align col-sm-3"><%= f.number_field :first_team_score, in: 0..22%> <strong> x </strong>
           <%= f.number_field :second_team_score, in: 0..22 %> </td>
-        <td class="col-sm-3"><%= image_tag @bet.game.second_team.image, class: 'team_image img-rounded', title: @bet.game.second_team.name %></td>
+        <td class="col-sm-3"><%= image_tag @bet.game.second_team.image, class: "#{team.national}_team_image img-rounded", title: @bet.game.second_team.name %></td>
         <td class="middle-align col-sm-2"><%= @bet.game.date.strftime("%d/%m/%Y") %></td>
     </table>
   </div>
   <div class="actions">
-    <%= f.submit  class: 'btn btn-primary'%>
-    <%= link_to 'Back', bets_path %>
+    <%= f.submit  class: "btn btn-primary"%>
+    <%= link_to "Back", bets_path %>
   </div>
 <% end %>

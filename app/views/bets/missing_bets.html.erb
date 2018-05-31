@@ -22,10 +22,10 @@
                   <%= b.hidden_field :first_team_id, value: bet.game.first_team.id %>
                   <%= b.hidden_field :second_team_id, value: bet.game.second_team_id %>
                     <td class="middle-align col-sm-1"><%= bet.game.round %></td>
-                    <td class="col-sm-3"><%= image_tag bet.game.first_team.image, class: 'team_image img-rounded', title: bet.game.first_team.name %></td>
+                    <td class="col-sm-3"><%= image_tag bet.game.first_team.image, class: "#{bet.game.first_team.team_type}_team_image img-rounded", title: bet.game.first_team.name %></td>
                     <td class="middle-align col-sm-3"><%= b.number_field :first_team_score, in: 0..22 %> <strong> x </strong>
                       <%= b.number_field :second_team_score, in: 0..22 %> </td>
-                    <td class="col-sm-3"><%= image_tag bet.game.second_team.image, class: 'team_image img-rounded', title: bet.game.second_team.name %></td>
+                    <td class="col-sm-3"><%= image_tag bet.game.second_team.image, class: "#{bet.game.second_team.team_type}_team_image img-rounded", title: bet.game.second_team.name %></td>
                     <td class="middle-align col-sm-2"><%= bet.game.date.strftime("%d/%m/%Y") %></td>
                 <% end %>
               </tr>

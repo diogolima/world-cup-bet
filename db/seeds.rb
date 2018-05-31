@@ -40,9 +40,15 @@ Tournament.destroy_all
                         South Korea and Japan. This will also be the first World Cup ever to be held in the Middle East,
                         and in an Arab and a Muslim-majority country.'
 
+                  },
+                  { name: 'Campeonato Brasileiro 2018 - Serie A',
+                    description: 'A Série A do Campeonato Brasileiro de Futebol de 2018 é a 62.ª edição da principal
+                    divisão do futebol brasileiro. A disputa tem o mesmo regulamento dos anos anteriores, quando
+                      foi implementado o sistema de pontos corridos. Haverá pausa durante a Copa do Mundo de 2018,
+                        que será realizada entre 14 de junho e 15 de julho, na Rússia.'
                   }
 
-@tournament = ['world_cup_russia', 'world_cup_qatar']
+@tournament = ['world_cup_russia', 'world_cup_qatar', 'brasileirao_2018']
 @tournament_name.each_with_index do |tournament, index|
   image_path = "#{Rails.root}/app/assets/images/#{@tournament[index]}.png"
   image_file = File.new(image_path)
@@ -66,7 +72,8 @@ end
       filename: File.basename(image_file),
       tempfile: image_file,
       type: MIME::Types.type_for(image_path).first.content_type
-    )
+    ),
+    team_type: 'national'
   )
 end
 
@@ -418,4 +425,97 @@ Game.create!(
   second_team_id: Team.find_by(name: 'Tunisia').id,
   date: DateTime.new(2018,06,28,15,0,0),
   round: 3
+)
+
+@brazilian_teams = [
+  'America-MG', 'Atletico-MG', 'Atletico-PR', 'Bahia',
+  'Botafogo', 'Ceara', 'Chapecoense', 'Corinthians',
+  'Cruzeiro', 'Flamengo', 'Fluminense', 'Gremio',
+  'Internacional', 'Palmeiras', 'Parana', 'Santos',
+  'Sao Paulo', 'Sport', 'Vasco', 'Vitoria'
+]
+
+@brazilian_teams.each do |team|
+  image_path = "#{Rails.root}/app/assets/images/#{team.downcase.gsub(/\s+/, '')}.png"
+  image_file = File.new(image_path)
+  Team.create!(
+    name: team,
+    image: ActionDispatch::Http::UploadedFile.new(
+      filename: File.basename(image_file),
+      tempfile: image_file,
+      type: MIME::Types.type_for(image_path).first.content_type
+    ),
+    team_type: 'club'
+  )
+end
+## Brazilian championship 2018 - Round 9
+Game.create!(
+  tournament_id: Tournament.find_by(name: 'Campeonato Brasileiro 2018 - Serie A').id,
+  first_team_id: Team.find_by(name: 'Atletico-MG').id,
+  second_team_id: Team.find_by(name: 'Chapecoense').id,
+  date: DateTime.new(2018,06,02,16,0,0),
+  round: 9
+)
+Game.create!(
+  tournament_id: Tournament.find_by(name: 'Campeonato Brasileiro 2018 - Serie A').id,
+  first_team_id: Team.find_by(name: 'Internacional').id,
+  second_team_id: Team.find_by(name: 'Sport').id,
+  date: DateTime.new(2018,06,02,16,0,0),
+  round: 9
+)
+Game.create!(
+  tournament_id: Tournament.find_by(name: 'Campeonato Brasileiro 2018 - Serie A').id,
+  first_team_id: Team.find_by(name: 'Vasco').id,
+  second_team_id: Team.find_by(name: 'Botafogo').id,
+  date: DateTime.new(2018,06,02,19,0,0),
+  round: 9
+)
+Game.create!(
+  tournament_id: Tournament.find_by(name: 'Campeonato Brasileiro 2018 - Serie A').id,
+  first_team_id: Team.find_by(name: 'Palmeiras').id,
+  second_team_id: Team.find_by(name: 'Sao Paulo').id,
+  date: DateTime.new(2018,06,02,21,0,0),
+  round: 9
+)
+Game.create!(
+  tournament_id: Tournament.find_by(name: 'Campeonato Brasileiro 2018 - Serie A').id,
+  first_team_id: Team.find_by(name: 'America-MG').id,
+  second_team_id: Team.find_by(name: 'Atletico-PR').id,
+  date: DateTime.new(2018,06,03,16,0,0),
+  round: 9
+)
+Game.create!(
+  tournament_id: Tournament.find_by(name: 'Campeonato Brasileiro 2018 - Serie A').id,
+  first_team_id: Team.find_by(name: 'Bahia').id,
+  second_team_id: Team.find_by(name: 'Gremio').id,
+  date: DateTime.new(2018,06,03,16,0,0),
+  round: 9
+)
+Game.create!(
+  tournament_id: Tournament.find_by(name: 'Campeonato Brasileiro 2018 - Serie A').id,
+  first_team_id: Team.find_by(name: 'Flamengo').id,
+  second_team_id: Team.find_by(name: 'Corinthians').id,
+  date: DateTime.new(2018,06,03,16,0,0),
+  round: 9
+)
+Game.create!(
+  tournament_id: Tournament.find_by(name: 'Campeonato Brasileiro 2018 - Serie A').id,
+  first_team_id: Team.find_by(name: 'Santos').id,
+  second_team_id: Team.find_by(name: 'Vitoria').id,
+  date: DateTime.new(2018,06,03,16,0,0),
+  round: 9
+)
+Game.create!(
+  tournament_id: Tournament.find_by(name: 'Campeonato Brasileiro 2018 - Serie A').id,
+  first_team_id: Team.find_by(name: 'Ceara').id,
+  second_team_id: Team.find_by(name: 'Cruzeiro').id,
+  date: DateTime.new(2018,06,03,19,0,0),
+  round: 9
+)
+Game.create!(
+  tournament_id: Tournament.find_by(name: 'Campeonato Brasileiro 2018 - Serie A').id,
+  first_team_id: Team.find_by(name: 'Parana').id,
+  second_team_id: Team.find_by(name: 'Fluminense').id,
+  date: DateTime.new(2018,06,04,20,0,0),
+  round: 9
 )
