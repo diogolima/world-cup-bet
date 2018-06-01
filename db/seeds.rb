@@ -113,28 +113,28 @@ Game.create!(
   first_team_id: Team.find_by(name: 'France').id,
   second_team_id: Team.find_by(name: 'Australia').id,
   date: DateTime.new(2018,06,16,07,0,0),
-  round: 2
+  round: 1
 )
 Game.create!(
   tournament_id: Tournament.first.id,
   first_team_id: Team.find_by(name: 'Argentina').id,
   second_team_id: Team.find_by(name: 'Iceland').id,
   date: DateTime.new(2018,06,16,10,0,0),
-  round: 2
+  round: 1
 )
 Game.create!(
   tournament_id: Tournament.first.id,
   first_team_id: Team.find_by(name: 'Peru').id,
   second_team_id: Team.find_by(name: 'Denmark').id,
   date: DateTime.new(2018,06,16,13,0,0),
-  round: 2
+  round: 1
 )
 Game.create!(
   tournament_id: Tournament.first.id,
   first_team_id: Team.find_by(name: 'Croatia').id,
   second_team_id: Team.find_by(name: 'Nigeria').id,
   date: DateTime.new(2018,06,16,16,0,0),
-  round: 2
+  round: 1
 )
 
 Game.create!(
@@ -142,56 +142,56 @@ Game.create!(
   first_team_id: Team.find_by(name: 'Costa Rica').id,
   second_team_id: Team.find_by(name: 'Serbia').id,
   date: DateTime.new(2018,06,17,9,0,0),
-  round: 2
+  round: 1
 )
 Game.create!(
   tournament_id: Tournament.first.id,
   first_team_id: Team.find_by(name: 'Germany').id,
   second_team_id: Team.find_by(name: 'Mexico').id,
   date: DateTime.new(2018,06,17,12,0,0),
-  round: 2
+  round: 1
 )
 Game.create!(
   tournament_id: Tournament.first.id,
   first_team_id: Team.find_by(name: 'Brazil').id,
   second_team_id: Team.find_by(name: 'Switzerland').id,
   date: DateTime.new(2018,06,17,15,0,0),
-  round: 2
+  round: 1
 )
 Game.create!(
   tournament_id: Tournament.first.id,
   first_team_id: Team.find_by(name: 'Sweden').id,
   second_team_id: Team.find_by(name: 'Korea Republic').id,
   date: DateTime.new(2018,06,18,9,0,0),
-  round: 2
+  round: 1
 )
 Game.create!(
   tournament_id: Tournament.first.id,
   first_team_id: Team.find_by(name: 'Belgium').id,
   second_team_id: Team.find_by(name: 'Panama').id,
   date: DateTime.new(2018,06,18,12,0,0),
-  round: 2
+  round: 1
 )
 Game.create!(
   tournament_id: Tournament.first.id,
   first_team_id: Team.find_by(name: 'Tunisia').id,
   second_team_id: Team.find_by(name: 'England').id,
   date: DateTime.new(2018,06,18,15,0,0),
-  round: 2
+  round: 1
 )
 Game.create!(
   tournament_id: Tournament.first.id,
   first_team_id: Team.find_by(name: 'Colombia').id,
   second_team_id: Team.find_by(name: 'Japan').id,
   date: DateTime.new(2018,06,19,9,0,0),
-  round: 2
+  round: 1
 )
 Game.create!(
   tournament_id: Tournament.first.id,
   first_team_id: Team.find_by(name: 'Poland').id,
   second_team_id: Team.find_by(name: 'Senegal').id,
   date: DateTime.new(2018,06,19,12,0,0),
-  round: 2
+  round: 1
 )
 #round2
 Game.create!(

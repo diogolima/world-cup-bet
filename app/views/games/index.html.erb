@@ -1,5 +1,18 @@
 <div>
 <h1>All Games - <%= @games.first.tournament.name %></h1>
+<% if @rounds %>
+  <li class="dropdown bet-dropdown">
+    <a href="#" class="dropdown-toggle btn-xs btn-primary" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Round<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <% @rounds.each do |round| %>
+        <li><%= link_to "Round #{round}", games_round_path(tournament_id: params[:tournament_id], round: round)  %></li>
+      <% end %>
+    </ul>
+  </li>
+  <% if params[:round] %>
+    <%= link_to 'Back', games_per_tournament_path(tournament_id: params[:tournament_id]), class: "btn-xs btn-primary", id: "back_button"%>
+  <% end %>
+<% end %>
 </div>
 <% if user_admin %>
   <div>

@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
 before_action :set_teams, only: [:new, :create, :edit, :update]
 before_action :set_game, only: [:show, :edit, :update, :destroy]
+before_action :set_round, only: [:per_tournament, :round]
 before_action :authenticate_user!, except: [:show, :index]
 after_action :calculate_result, only: [:update, :create]
 
@@ -61,6 +62,13 @@ after_action :calculate_result, only: [:update, :create]
     end
   end
 
+  def round
+    @games = Game.order(:date).where(tournament_id: params[:tournament_id], round: params[:round])
+    respond_to do |format|
+      format.html { render action: :index }
+    end
+  end
+
   private
   def game_params
     params.require(:game).permit(:date, :first_team_id, :second_team_id, :score_first_team, :score_second_team, :round, :tournament_id)
@@ -72,6 +80,10 @@ after_action :calculate_result, only: [:update, :create]
 
   def set_teams
     @teams = Team.all
+  end
+
+  def set_round
+    @rounds = Game.where(tournament_id: params[:tournament_id]).distinct(:round).pluck(:round)
   end
 
   def calculate_result
