@@ -1,0 +1,21 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Number of bets</th>
+      <th>Created</th>
+    </thead>
+    <tbody>
+      <% @users.each do|user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.bets.count %></td>
+        <td><%= user.created_at %></td>
+        <td><%= link_to 'Profile', edit_user_path(user)  %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

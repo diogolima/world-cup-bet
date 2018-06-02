@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'scored_bets' => 'rank#scored_bets'
   get 'send_pdf' => 'rank#send_pdf'
   devise_for :users
+  resources :users, only: [:index, :edit, :update]
   resources :tournaments
   resources :teams
   get 'games/round' => 'games#round'

@@ -2,7 +2,7 @@ class RankController < ApplicationController
   include BetHelper
   before_action :set_tournament_rank
   before_action :set_rank, only: [:index, :send_pdf]
-  before_action :check_admin, only: [:send_pdf]
+  before_action only: [:send_pdf] {check_admin rank_url(tournament_id: params[:tournament_id])}
   before_action :rank_mailer, only: [:send_pdf]
 
   def index
@@ -43,11 +43,5 @@ class RankController < ApplicationController
       )
     end
     @all_rank = @all_rank.sort_by {|user| user[:score]}.reverse!
-  end
-
-  def check_admin
-    (current_user && current_user.admin)?
-      true : respond_to do |format| format.html { redirect_to rank_url(tournament_id: params[:tournament_id]), alert: 'This action is only allowed for the admin.' }
-    end
   end
 end
