@@ -1,23 +1,26 @@
 
 <div class="jumbotron">
 <h2>All Tournaments</h1>
-<p>Those are all tournaments availables in the system.</p>
+<p>Those are all tournaments availables in the system.
+  <% if user_admin %>
+    <%= link_to 'New Tournament', new_tournament_path, class: "btn btn-primary" %>
+  <% end %>
+</p>
 </div>
 <div class="table-responsive">
+  <table class="table table-striped">
   <% @tournaments.each do |tournament| %>
-  <div>
-    <div>
-      <figure>
-        <%= link_to (image_tag tournament.image.url(:thumb), class: 'image'), tournament %>
-        <p><figcaption><%= tournament.name %></figcaption></p>
-      </figure>
-      <p><%= tournament.description %></p>
-    </div>
-  </div>
+  <tbody>
+    <tr class="tournament-vertical-align">
+      <td>
+        <figure>
+          <%= link_to (image_tag tournament.image.url(:thumb), class: 'image'), games_per_tournament_path(tournament_id: tournament.id) %>
+          <p><figcaption><%= tournament.name %></figcaption></p>
+        </figure>
+      </td>
+      <td class="tournament-description"><%= tournament.description %></td>
+    </tr>
+  </tbody>
   <% end %>
 </div>
-<% if user_admin %>
-  <div>
-    <%= link_to 'New', new_tournament_path %>
-  </div>
-<% end %>
+  </table>
