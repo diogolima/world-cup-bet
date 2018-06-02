@@ -1,12 +1,16 @@
-<p>
-  <%= image_tag @team.image.url, class: "#{@team.team_type}_team_image" %>
-</p>
-<p>
-  <%= @team.name %> <br>
-</p>
+<div class="jumbotron">
+
+  <div class="d-flex">
+    <p><%= image_tag @team.image.url, class: "#{@team.team_type}_team_image" %>
+    <%= @team.name %>
+    <span id="game-count"> Games: <%= @games.count %></span></p>
+  </div>
 
 <% if user_admin %>
   <%= link_to 'Edit', edit_team_path(@team) %>
   <%= link_to 'Delete', team_path, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 <%= link_to 'Back', teams_path %>
+</div>
+
+<%= render 'layouts/games' %>
