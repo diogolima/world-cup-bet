@@ -1,12 +1,13 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
-  
+
   def index
     @teams = Team.all
   end
 
   def show
+    @games = Game.where(first_team_id: @team.id).or(Game.where(second_team_id: @team.id))
   end
 
   def edit
