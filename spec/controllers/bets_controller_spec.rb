@@ -76,7 +76,7 @@ RSpec.describe BetsController, type: :controller do
   describe 'GET edit_bet' do
     it 'has a 302 staus - redirect to index' do
       game = Game.first
-      game.date = DateTime.now
+      game.date = DateTime.now - 4.hour
       game.save
       bets(Game.all)
       get :edit, :params => {id: Bet.find_by(game_id: game.id).id}
