@@ -26,7 +26,7 @@
                     <td class="middle-align col-sm-3"><%= b.number_field :first_team_score, in: 0..22 %> <strong> x </strong>
                       <%= b.number_field :second_team_score, in: 0..22 %> </td>
                     <td class="col-sm-3"><%= image_tag bet.game.second_team.image, class: "#{bet.game.second_team.team_type}_team_image img-rounded", title: bet.game.second_team.name %></td>
-                    <td class="middle-align col-sm-2"><%= bet.game.date.strftime("%d/%m/%Y") %></td>
+                    <td class="middle-align col-sm-2"><%= bet.game.date.strftime("%d/%m/%Y  %I:%M%P") %></td>
                 <% end %>
               </tr>
             <% end %>

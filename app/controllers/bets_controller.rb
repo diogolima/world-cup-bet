@@ -109,10 +109,12 @@ class BetsController < ApplicationController
         format.html { redirect_to bets_url, alert: 'You can\'t change your bet with less than one hour of the game.'}
         return
       end
+    else
+      true
     end
   end
 
   def can_bet
-    bet_before_game(Game.find(id: bet[:game_id]).date)
+    bet_before_game(Game.find(Bet.find(params[:id]).game.id).date)
   end
 end
