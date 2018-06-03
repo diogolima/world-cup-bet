@@ -12,9 +12,9 @@ class BetsController < ApplicationController
   end
 
   def edit
-    if @bet.game.date <= Time.now.utc - 3.hour
+    if (@bet.game.date - 1.hour) <= (Time.now.utc - 3.hour)
       respond_to do |format|
-        format.html { redirect_to bets_url, alert: 'You can\'t change your bet on game day.'}
+        format.html { redirect_to bets_url, alert: 'You can\'t change your bet with less than one hour of the game.'}
       end
     end
   end
