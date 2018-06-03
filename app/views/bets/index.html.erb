@@ -23,32 +23,41 @@
 </div>
 <div id="bet-table">
 <% if !@bets.blank? %>
-  <div>
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th> Round </th>
-            <th colspan="4"><strong>All tournaments</strong></th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @bets.each do |bet| %>
-            <tr>
-              <td class="middle-align col-sm-2">Round: <%= bet.game.round %> <br/> <strong> <%= bet.game.tournament.name %></strong></td>
-              <td class="col-sm-3"><%= image_tag bet.game.first_team.image, class: "#{bet.game.first_team.team_type}_team_image img-rounded", title: bet.game.first_team.name %></td>
-              <td class="middle-align col-sm-3"><%= bet.first_team_score %> x
-              <%= bet.second_team_score %></td>
-              <td class="col-sm-3"><%= image_tag bet.game.second_team.image, class: "#{bet.game.second_team.team_type}_team_image img-rounded", title: bet.game.second_team.name %><td>
-              <td class="middle-align col-sm-2"><%= bet.game.date.strftime("%d/%m/%Y %I:%M%P") %></td>
-              <td class="middle-align col-sm-1"><%= link_to 'Edit', edit_bet_path(bet) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th> Round </th>
+                <th colspan="4"><strong>All tournaments</strong></th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @bets.each do |bet| %>
+                <tr>
+                  <td class="middle-align col-sm-2">Round: <%= bet.game.round %> <br/> <strong> <%= bet.game.tournament.name %></strong></td>
+                  <td class="col-sm-3"><%= image_tag bet.game.first_team.image, class: "#{bet.game.first_team.team_type}_team_image img-rounded", title: bet.game.first_team.name %></td>
+                  <td class="middle-align col-sm-3"><%= bet.first_team_score %> x
+                  <%= bet.second_team_score %></td>
+                  <td class="col-sm-3"><%= image_tag bet.game.second_team.image, class: "#{bet.game.second_team.team_type}_team_image img-rounded", title: bet.game.second_team.name %><td>
+                  <td class="middle-align col-sm-2"><%= bet.game.date.strftime("%d/%m/%Y %I:%M%P") %></td>
+                  <td class="middle-align col-sm-1"><%= link_to 'Edit', edit_bet_path(bet) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <%= render 'bets/rules' %>
+      </div>
     </div>
   </div>
+</div>
 <% else %>
   <h3> <%= @no_bets_tournament %> </h3>
 <% end %>
