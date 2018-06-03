@@ -2,7 +2,7 @@ class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :tournament_pick, only: [:index]
-  before_action :can_bet, only: [:edit, :update]
+  before_action :can_bet, only: [:update]
 
   def index
     @bets = current_user.get_bets(params[:tournament])
@@ -13,6 +13,7 @@ class BetsController < ApplicationController
   end
 
   def edit
+    bet_before_game(@bet.game.date)
   end
 
   def new
@@ -21,7 +22,7 @@ class BetsController < ApplicationController
 
   def missing_bets
     @bets = current_user.bets.pluck(:game_id)
-    games = Game.all.where(tournament_id: params[:tournament][:id]).order(:date).where.not(id: @bets)
+    games = Game.all.where(tournament_id: params[:tournament][:id]).where("date > ? ", Time.now.utc - 2.hour).order(:date).where.not(id: @bets)
     @all_bets = init_bet(games)
     if @all_bets.empty?
       respond_to do |format|
@@ -84,7 +85,7 @@ class BetsController < ApplicationController
 
   def valid_bet(bet)
     @game = Game.find(bet[:game_id])
-    (!bet[:first_team_score].blank? && !bet[:second_team_score].blank?)&&(@game.first_team.id == bet[:first_team_id].to_i && @game.second_team.id == bet[:second_team_id].to_i)
+    (!bet[:first_team_score].blank? && !bet[:second_team_score].blank?)&&(@game.first_team.id == bet[:first_team_id].to_i && @game.second_team.id == bet[:second_team_id].to_i && bet_before_game(@game.date))
   end
 
   def tournament_pick
@@ -102,11 +103,16 @@ class BetsController < ApplicationController
     @all_bets
   end
 
-  def can_bet
-    if (@bet.game.date - 1.hour) <= (Time.now.utc - 3.hour)
+  def bet_before_game(game_date)
+    if (game_date - 1.hour) <= (Time.now.utc - 3.hour)
       respond_to do |format|
         format.html { redirect_to bets_url, alert: 'You can\'t change your bet with less than one hour of the game.'}
+        return
       end
     end
+  end
+
+  def can_bet
+    bet_before_game(Game.find(id: bet[:game_id]).date)
   end
 end
