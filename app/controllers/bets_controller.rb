@@ -107,7 +107,6 @@ class BetsController < ApplicationController
     if (game_date - 1.hour) <= (Time.now.utc - 3.hour)
       respond_to do |format|
         format.html { redirect_to bets_url, alert: 'You can\'t change your bet with less than one hour of the game.'}
-        return
       end
     else
       true
