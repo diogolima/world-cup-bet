@@ -2,6 +2,7 @@ class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :tournament_pick, only: [:index]
+  before_action :can_bet, only: [:edit, :update]
 
   def index
     @bets = current_user.get_bets(params[:tournament])
@@ -12,11 +13,6 @@ class BetsController < ApplicationController
   end
 
   def edit
-    if (@bet.game.date - 1.hour) <= (Time.now.utc - 3.hour)
-      respond_to do |format|
-        format.html { redirect_to bets_url, alert: 'You can\'t change your bet with less than one hour of the game.'}
-      end
-    end
   end
 
   def new
@@ -106,4 +102,11 @@ class BetsController < ApplicationController
     @all_bets
   end
 
+  def can_bet
+    if (@bet.game.date - 1.hour) <= (Time.now.utc - 3.hour)
+      respond_to do |format|
+        format.html { redirect_to bets_url, alert: 'You can\'t change your bet with less than one hour of the game.'}
+      end
+    end
+  end
 end
