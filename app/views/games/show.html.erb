@@ -1,3 +1,8 @@
+<% if user_admin %>
+  <p>
+    <%= link_to 'New', new_game_path(tournament_id: @game.tournament_id), class: "btn-sm btn-primary"%>
+  </p>
+<% end %>
 <div class="table-responsive">
   <table class="table">
     <tbody>
