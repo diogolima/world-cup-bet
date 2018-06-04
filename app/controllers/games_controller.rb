@@ -43,7 +43,7 @@ after_action :calculate_result, only: [:update, :create]
   def destroy
     @game.destroy
     respond_to do |format|
-      format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
+      format.html { redirect_to games_per_tournament_path(tournament_id: @game.tournament.id), notice: 'Game was successfully destroyed.' }
     end
   end
 
