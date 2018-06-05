@@ -1,12 +1,14 @@
 <div>
-  <h1>All Games - <%= @games.first.tournament.name %>
-  <% if user_admin %>
-    <%= link_to 'New', new_game_path(tournament_id: @games.first.tournament_id), class: "btn btn-primary"%>
-  <% end %>
-  </h1>
+  <div class="jumbotron">
+    <h2>All Games - <%= @games.first.tournament.name %>
+    <% if user_admin %>
+      <%= link_to 'New', new_game_path(tournament_id: @games.first.tournament_id), class: "btn btn-dark"%>
+    <% end %>
+    </h2>
+  </div>
   <% if @rounds %>
     <li class="dropdown bet-dropdown">
-      <a href="#" class="dropdown-toggle btn-xs btn-primary" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Round<span class="caret"></span></a>
+      <a href="#" class="dropdown-toggle btn-xs btn-dark" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Round<span class="caret"></span></a>
       <ul class="dropdown-menu">
         <% @rounds.each do |round| %>
           <li><%= link_to "Round #{round}", games_round_path(tournament_id: params[:tournament_id], round: round)  %></li>
@@ -14,7 +16,7 @@
       </ul>
     </li>
     <% if params[:round] %>
-      <%= link_to 'Back', games_per_tournament_path(tournament_id: params[:tournament_id]), class: "btn-xs btn-primary", id: "back_button"%>
+      <%= link_to 'Back', games_per_tournament_path(tournament_id: params[:tournament_id]), class: "btn-xs btn-dark", id: "back_button"%>
     <% end %>
   <% end %>
   <br />

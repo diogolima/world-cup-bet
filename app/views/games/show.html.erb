@@ -1,6 +1,6 @@
 <% if user_admin %>
   <p>
-    <%= link_to 'New', new_game_path(tournament_id: @game.tournament_id), class: "btn-sm btn-primary"%>
+    <%= link_to 'New', new_game_path(tournament_id: @game.tournament_id), class: "btn-sm btn-dark"%>
   </p>
 <% end %>
 <div class="table-responsive">
@@ -22,7 +22,7 @@
           <td><%= image_tag @game.second_team.image, class: "#{@game.second_team.team_type}_team_image" , title: @game.second_team.name%></td>
           <tr>
             <td>
-              <%= link_to 'Back', games_path %>
+              <%= link_to 'Back', games_per_tournament_path(tournament_id: @game.tournament.id) %>
             </td>
           </tr>
         </tr>

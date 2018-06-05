@@ -10,37 +10,40 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :tournament %>
-    <%= f.text_field :tournament, readonly: true, value: @game.tournament.name %>
+    <%= f.text_field :tournament, readonly: true, value: @game.tournament.name, class: "form-control"  %>
     <%= f.hidden_field :tournament_id, value: @game.tournament.id %>
   </div>
-  <div class="field">
-    <%= f.label :first_team %>
-    <%= f.select :first_team_id, @teams.collect {|team| [team.name, team.id]}%>
+  <div class="form-inline">
+    <div class="field form-group">
+      <%= f.label :first_team, id: "team_label" %>
+      <%= f.select :first_team_id, @teams.collect {|team| [team.name, team.id]}, class: "form-control" %>
+    </div>
+    <div class="field form-group">
+      <%= f.number_field :score_first_team, in: 0..20,  class: "form-control team_score", placeholder: "Score"%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :first_team_score %>
-    <%= f.number_field :score_first_team, in: 0..22 %>
+  <div class="form-inline">
+    <div class="field form-group">
+      <%= f.label :second_team%>
+      <%= f.select :second_team_id, @teams.collect {|team| [team.name, team.id]}, class: "form-control" %>
+    </div>
+    <div class="field form-group team_score">
+      <%= f.number_field :score_second_team, in: 0..20, class: "form-control", placeholder: "Score" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :second_team %>
-    <%= f.select :second_team_id, @teams.collect {|team| [team.name, team.id]}%>
-  </div>
-  <div class="field">
-    <%= f.label :second_team_score %>
-    <%= f.number_field :score_second_team, in: 0..20 %>
-  </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :date %>
-    <%= f.datetime_field :date %>
+    <%= f.datetime_local_field :date , class: "form-control glyphicon glyphicon-calendar", placeholder: "Date: (dd/mm/yyyy 00:00)"%>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :round %>
-    <%= f.text_field :round, value: @game.round %>
+    <%= f.number_field :round, value: @game.round , class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-default" %>
+    <%= link_to 'Back', games_per_tournament_path(tournament_id: @game.tournament.id), class: "btn btn-default" %>
   </div>
 
 <% end %>
