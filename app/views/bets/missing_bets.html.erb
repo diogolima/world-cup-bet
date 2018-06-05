@@ -1,8 +1,11 @@
 <%= form_for @all_bets, url: { action: "create_bets" }, html: { multipart: true } do |f| %>
   <div>
     <div class="user-bets">
-      <%= f.submit 'Create Bets', class: 'btn btn-primary'%>
-      <%= link_to 'Back', bets_path, class: 'btn btn-primary' %>
+      <%= f.submit 'Create Bets', class: 'btn btn-dark'%>
+      <%= link_to 'Back', bets_path, class: 'btn btn-dark' %>
+    </div>
+    <div class="jumbotron" id="bet_border_title">
+      <h2 id="bet_title">Missing bets of <br/><%= @all_bets.first.game.tournament.name %></h2>
     </div>
     <div id="bet-table" class="table-responsive">
       <table class="table table-striped">
