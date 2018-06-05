@@ -1,5 +1,9 @@
 <div>
-<h1>All Teams</h1>
+  <h1>All Teams
+    <% if user_admin %>
+      <%= link_to 'New', new_team_path, class: "btn btn-dark" %>
+    <% end %>
+  </h1><br/>
 </div>
 <div class="table-responsive">
   <% @teams.each do |team| %>
@@ -9,8 +13,3 @@
   </div>
   <% end %>
 </div>
-<% if user_admin %>
-  <div>
-    <%= link_to 'New', new_team_path %>
-  </div>
-<% end %>
