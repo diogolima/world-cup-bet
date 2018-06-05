@@ -18,6 +18,7 @@ class RankController < ApplicationController
     games_ids = Bet.where(user_id: params[:user_id]).where('bet_score >= ?', 0).pluck(:game_id)
     @games = Game.where(id: games_ids).where(tournament_id: params[:tournament_id]).where('score_first_team >= ? AND score_second_team >= ?', 0, 0).order(:date)
     @bets = Bet.where(user_id: params[:user_id]).where(game_id: @games.ids)
+    @user = User.find(params[:user_id])
     if @bets.blank?
       respond_to do |format|
         format.html { redirect_to rank_url(tournament_id: params[:tournament_id]), alert: 'This user doesn\'t have bets for this tournament or no game has happened yet.' }

@@ -1,11 +1,11 @@
 <h2><%= @tournament.name %></h2>
+<mark>Bets of <%= @user.name %></mark>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
         <th><strong>Tournament:</strong></th>
-        <th colspan="2"><%= @games.first.tournament.name %></th>
-        <th></th>
+        <th colspan="3"><%= @games.first.tournament.name %></th>
         <th>Date</th>
         <th>Score</th>
       </tr>
