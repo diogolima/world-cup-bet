@@ -35,7 +35,7 @@
   </div>
   <div class="field form-group">
     <div class='input-group date' id='game-calendar'>
-      <%= f.text_field :date , class: "form-control", placeholder: "Date: (dd/mm/yyyy 00:00)", data: { datetime_format: "MM/DD/YYYY HH:MM"}, value: "#{@game.date.strftime("%m/%d/%Y %HH:%MM%p") unless @game.date.blank?}" %>
+      <%= f.text_field :date , class: "form-control", placeholder: "Date: (mm/dd/yyyy 00:00)", data: { datetime_format: "MM/DD/YYYY HH:MM"}, value: "#{@game.date.strftime("%m/%d/%Y %HH:%MM%p") unless @game.date.blank?}" %>
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-calendar"></span>
       </span>
