@@ -1,5 +1,6 @@
-<h1>Editing Game</h1>
-
+<div class="jumbotron">
+  <h2>Editing Game</h2>
+</div>
 <%= form_for @bet, local: true, html: { multipart: true } do |f| %>
   <% if @bet.errors.any? %>
     <div id="error_explanation">
@@ -23,14 +24,14 @@
       </thead>
         <td class="middle-align col-sm-1"><%= @bet.game.round %></td>
         <td class="col-sm-3"><%= image_tag @bet.game.first_team.image, class: "#{@bet.game.first_team.team_type}_team_image img-rounded", title: @bet.game.first_team.name %></td>
-        <td class="middle-align col-sm-3"><%= f.number_field :first_team_score, in: 0..22%> <strong> x </strong>
-          <%= f.number_field :second_team_score, in: 0..22 %> </td>
+        <td class="middle-align col-sm-3 form-inline"><%= f.number_field :first_team_score, in: 0..22, class: "form-control"%> <strong> x </strong>
+          <%= f.number_field :second_team_score, in: 0..22 ,class: "form-control"%> </td>
         <td class="col-sm-3"><%= image_tag @bet.game.second_team.image, class: "#{@bet.game.second_team.team_type}_team_image img-rounded", title: @bet.game.second_team.name %></td>
         <td class="middle-align col-sm-2"><%= @bet.game.date.strftime("%d/%m/%Y %I:%M%P") %></td>
     </table>
   </div>
   <div class="actions">
-    <%= f.submit  class: "btn btn-primary"%>
+    <%= f.submit  class: "btn btn-dark"%>
     <%= link_to "Back", bets_path %>
   </div>
 <% end %>

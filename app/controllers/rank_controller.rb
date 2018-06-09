@@ -4,6 +4,7 @@ class RankController < ApplicationController
   before_action :generate_rank, only: [:index, :send_pdf]
   before_action only: [:send_pdf] {check_admin rank_url(tournament_id: params[:tournament_id])}
   before_action :rank_mailer, only: [:send_pdf]
+  before_action :authenticate_user!
 
   def index
   end

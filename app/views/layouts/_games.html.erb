@@ -23,11 +23,11 @@
                 <% end %>
             </td>
             <td><%= image_tag game.second_team.image, class: "#{game.first_team.team_type}_team_image img-rounded", title: game.second_team.name  %></td>
-            <td class="middle-align"><%= game.date.strftime("%d/%m/%Y at %I:%M%p") %></td>
+            <td class="middle-align"><%= game.date.strftime("%d/%m/%Y at %I:%M %p") %></td>
             <% if user_admin %>
               <td class="middle-align">
-                <%= link_to 'Edit', edit_game_path(game) %>
-                <%= link_to 'Delete', game_path(game), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'Edit', edit_game_path(game), class: "btn-sm btn-dark" %>
+                <%= link_to 'Delete', game_path(game), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-dark" %>
               </td>
             <% end %>
           </tr>

@@ -1,8 +1,11 @@
 <%= form_for @all_bets, url: { action: "create_bets" }, html: { multipart: true } do |f| %>
   <div>
     <div class="user-bets">
-      <%= f.submit 'Create Bets', class: 'btn btn-primary'%>
-      <%= link_to 'Back', bets_path, class: 'btn btn-primary' %>
+      <%= f.submit 'Create Bets', class: 'btn btn-dark'%>
+      <%= link_to 'Back', bets_path, class: 'btn btn-dark' %>
+    </div>
+    <div class="jumbotron" id="bet_border_title">
+      <h2 id="bet_title">Missing bets of <br/><%= @all_bets.first.game.tournament.name %></h2>
     </div>
     <div id="bet-table" class="table-responsive">
       <table class="table table-striped">
@@ -23,8 +26,8 @@
                   <%= b.hidden_field :second_team_id, value: bet.game.second_team_id %>
                     <td class="middle-align col-sm-1"><%= bet.game.round %></td>
                     <td class="col-sm-3"><%= image_tag bet.game.first_team.image, class: "#{bet.game.first_team.team_type}_team_image img-rounded", title: bet.game.first_team.name %></td>
-                    <td class="middle-align col-sm-3"><%= b.number_field :first_team_score, in: 0..22 %> <strong> x </strong>
-                      <%= b.number_field :second_team_score, in: 0..22 %> </td>
+                    <td class="middle-align col-sm-3 form-inline score-group"><%= b.number_field :first_team_score, in: 0..22, class: "form-control score_field" %> <strong> x </strong>
+                      <%= b.number_field :second_team_score, in: 0..22,class: "form-control score_field" %> </td>
                     <td class="col-sm-3"><%= image_tag bet.game.second_team.image, class: "#{bet.game.second_team.team_type}_team_image img-rounded", title: bet.game.second_team.name %></td>
                     <td class="middle-align col-sm-2"><%= bet.game.date.strftime("%d/%m/%Y  %I:%M%P") %></td>
                 <% end %>
