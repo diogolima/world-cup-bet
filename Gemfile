@@ -69,3 +69,6 @@ gem 'wicked_pdf', '~> 1.1'
 gem 'wkhtmltopdf-binary'
 
 gem 'envyable', '~> 1.2', groups: [:development, :test]
+
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'

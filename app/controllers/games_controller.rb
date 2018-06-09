@@ -16,6 +16,7 @@ after_action :calculate_result, only: [:update, :create]
   end
 
   def update
+    set_date
     respond_to do |format|
       if @game.update(game_params)
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
@@ -31,6 +32,7 @@ after_action :calculate_result, only: [:update, :create]
 
   def create
     @game = Game.new(game_params)
+    set_date
     respond_to do |format|
       if @game.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
@@ -71,7 +73,7 @@ after_action :calculate_result, only: [:update, :create]
 
   private
   def game_params
-    params.require(:game).permit(:date, :first_team_id, :second_team_id, :score_first_team, :score_second_team, :round, :tournament_id)
+    params.require(:game).permit(:first_team_id, :second_team_id, :score_first_team, :score_second_team, :round, :tournament_id)
   end
 
   def set_game
@@ -84,6 +86,10 @@ after_action :calculate_result, only: [:update, :create]
 
   def set_round
     @rounds = Game.where(tournament_id: params[:tournament_id]).order(:round).distinct(:round).pluck(:round)
+  end
+
+  def set_date
+    @game.date = !params[:game][:date].blank? ? DateTime.strptime(params[:game][:date], "%m/%d/%Y %H:%M %p") : nil
   end
 
   def calculate_result
