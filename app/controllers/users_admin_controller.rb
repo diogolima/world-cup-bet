@@ -1,5 +1,5 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+class UsersAdminController < ApplicationController
+  before_action :set_user_config, only: [:show, :edit, :update]
   before_action {check_admin root_path}
   def index
     @users = User.all
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def set_user
+  def set_user_config
     @user = User.find(params[:id])
   end
 
