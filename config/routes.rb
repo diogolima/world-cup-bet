@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'rank' => 'rank#index'
   get 'scored_bets' => 'rank#scored_bets'
   get 'send_pdf' => 'rank#send_pdf'
-  resources :users_admin, only: [:index, :edit, :update]
+  resources :users_admin
   resources :tournaments
   resources :teams
   get 'games/round' => 'games#round'
