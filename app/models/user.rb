@@ -4,7 +4,24 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: [:facebook]
+
+  def self.create_from_provider_data(auth)
+    if self.where(email: auth.info.email).exists?
+      login_user = self.where(email: auth.info.email).first
+      login_user.provider = auth.provider
+      login_user.uid = auth.uid
+    else
+      login_user = self.create do |user|
+         user.provider = auth.provider
+         user.uid = auth.uid
+         user.name = auth.info.name
+         user.email = auth.info.email
+      end
+    end
+    login_user
+  end
 
   def missing_bets_tournament(all_tournaments)
     @tournament_missing_bets = []

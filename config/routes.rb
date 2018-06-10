@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   get 'rank' => 'rank#index'
   get 'scored_bets' => 'rank#scored_bets'
   get 'send_pdf' => 'rank#send_pdf'
-  devise_for :users
-  resources :users, only: [:index, :edit, :update]
+  resources :users_admin
   resources :tournaments
   resources :teams
   get 'games/round' => 'games#round'
   resources :games
   resources :bets
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth' }
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
