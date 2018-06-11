@@ -78,3 +78,5 @@ gem 'omniauth-facebook', '~> 4.0'
 
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store', '~> 1.0'
+
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
