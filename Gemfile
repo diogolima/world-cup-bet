@@ -73,8 +73,9 @@ gem 'envyable', '~> 1.2', groups: [:development, :test]
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
-# Use Omniauth Facebook plugin
+# Use Omniauth plugin
 gem 'omniauth-facebook', '~> 4.0'
+gem 'omniauth-linkedin', '~> 0.2.0'
 
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store', '~> 1.0'
