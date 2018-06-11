@@ -12,10 +12,9 @@
  *
  */
  @import "team"; @import "tournament"; @import "game"; @import "bet"; @import "rank";
- @import "bootstrap-sprockets";
- @import "bootstrap";
- @import "bootstrap-datetimepicker";
- @import "bootstrap-social";
+ @import "bootstrap-sprockets"; @import "bootstrap";
+ @import "bootstrap-datetimepicker"; @import "bootstrap-social"; 
+ @import "font-awesome";
 
  .national_team_image{height: 70px; width: 110px;}
  .club_team_image{height: 100px; width: 100px;}
