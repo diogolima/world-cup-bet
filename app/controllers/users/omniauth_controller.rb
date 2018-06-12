@@ -10,8 +10,14 @@ class Users::OmniauthController < ApplicationController
     omniauth_register("Linkedin")
   end
 
+  # twitter callback
   def twitter
     omniauth_register("Twitter")
+  end
+
+  # github callback
+  def github
+    omniauth_register("Github")
   end
 
   def failure
