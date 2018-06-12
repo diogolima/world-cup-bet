@@ -10,6 +10,10 @@ class Users::OmniauthController < ApplicationController
     omniauth_register("Linkedin")
   end
 
+  def twitter
+    omniauth_register("Twitter")
+  end
+
   def failure
     flash[:error] = 'There was a problem signing you in. Please register or try signing in later.'
     redirect_to new_user_registration_url

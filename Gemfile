@@ -76,6 +76,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 # Use Omniauth plugin
 gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-linkedin', '~> 0.2.0'
+gem 'omniauth-twitter', '~> 1.4'
 
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store', '~> 1.0'
