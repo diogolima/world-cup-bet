@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
-         :omniauthable, omniauth_providers: [:facebook, :linkedin, :twitter, :github]
+         :omniauthable, omniauth_providers: [:facebook, :github, :google_oauth2, :linkedin, :twitter]
 
   def self.create_from_provider_data(auth)
     if self.where(email: auth.info.email).exists?

@@ -20,6 +20,11 @@ class Users::OmniauthController < ApplicationController
     omniauth_register("Github")
   end
 
+  # google callback
+  def google_oauth2
+    omniauth_register("Google")
+  end
+
   def failure
     flash[:error] = 'There was a problem signing you in. Please register or try signing in later.'
     redirect_to new_user_registration_url
