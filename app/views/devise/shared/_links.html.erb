@@ -20,8 +20,8 @@
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-lg btn-social-icon btn-#{provider}" do %>
-      <span class="fa fa-<%=provider%>"></span><br />
+    <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-lg btn-social-icon btn-#{provider.to_s.split('_').first}" do %>
+      <span class="fa fa-<%=provider.to_s.split('_').first%>"></span><br />
     <% end %>
   <% end -%>
 <% end -%>

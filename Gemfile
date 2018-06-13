@@ -78,6 +78,7 @@ gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-linkedin', '~> 0.2.0'
 gem 'omniauth-twitter', '~> 1.4'
 gem 'omniauth-github', '~> 1.3'
+gem 'omniauth-google-oauth2', '~> 0.5.3'
 
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store', '~> 1.0'
