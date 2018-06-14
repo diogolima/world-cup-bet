@@ -47,7 +47,7 @@
                       <td class="middle-align col-sm-3"><%= image_tag bet.game.first_team.image, class: "#{bet.game.first_team.team_type}_team_image img-rounded", title: bet.game.first_team.name %></td>
                       <td class="middle-align col-sm-3">
                         User bet: <br /><mark><%= bet.first_team_score %> x <%= bet.second_team_score %></mark><br />
-                        Game score: <br /><mark><%= bet.game.score_first_team? ? "#{bet.game.score_first_team} x #{bet.game.score_second_team}" : "Waiting game" %></mark>
+                        Game score: <br /><mark><%= bet.game.score_first_team.blank? ? "Waiting game" : "#{bet.game.score_first_team} x #{bet.game.score_second_team}" %></mark>
                       </td>
                       <td class="middle-align col-sm-3"><%= image_tag bet.game.second_team.image, class: "#{bet.game.second_team.team_type}_team_image img-rounded", title: bet.game.second_team.name %><td>
                       <td class="middle-align col-sm-2"><%= bet.game.date.strftime("%d/%m/%Y %I:%M%P") %></td>
