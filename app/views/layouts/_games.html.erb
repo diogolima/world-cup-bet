@@ -12,7 +12,7 @@
         <% @games.each_with_index do |game, index| %>
           <tr>
             <th scope="row"><br/>Game #<%= index + 1 %><br/>Round: <%= game.round %></th>
-            <td><%= image_tag game.first_team.image, class: "#{game.first_team.team_type}_team_image img-rounded", title: game.first_team.name %></td>
+            <td class="middle-align"><%= image_tag game.first_team.image, class: "#{game.first_team.team_type}_team_image img-rounded", title: game.first_team.name %></td>
             <td class="middle-align">
               <% if !game.score_first_team.blank? &&  !game.score_second_team.blank?%>
                   <%= game.score_first_team %>
@@ -22,7 +22,7 @@
                   <strong> Waiting game </strong>
                 <% end %>
             </td>
-            <td><%= image_tag game.second_team.image, class: "#{game.first_team.team_type}_team_image img-rounded", title: game.second_team.name  %></td>
+            <td class="middle-align"><%= image_tag game.second_team.image, class: "#{game.first_team.team_type}_team_image img-rounded", title: game.second_team.name  %></td>
             <td class="middle-align"><%= game.date.strftime("%d/%m/%Y at %I:%M %p") %></td>
             <% if user_admin %>
               <td class="middle-align">
