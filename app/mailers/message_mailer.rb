@@ -7,7 +7,8 @@ class MessageMailer < ApplicationMailer
   #
   def contact(message)
     @body = message.body
-
+    @name = message.name
+    @email = message.email
     mail to: ENV['USER_EMAIL'], from: message.email
   end
 end

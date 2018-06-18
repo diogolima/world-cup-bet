@@ -25,10 +25,10 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    
+
     assert_redirected_to new_message_url
     follow_redirect!
-    assert_match /Message receveid, thanks!/, response.body
+    assert_match /Message received, thanks!/, response.body
   end
 
   test "POST create failed" do
