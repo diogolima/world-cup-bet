@@ -1,0 +1,28 @@
+<h1>Send a message for us</h1>
+<%= form_for @message, url: create_message_url do |f| %>
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message to be send:</h2>
+      <ul>
+      <% @message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: 'Name', class: "form-control" %>
+  </div>
+  <div class="field form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, placeholder: 'Email', class: "form-control" %>
+  </div>
+  <div class="field form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, placeholder: 'Body', class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-default" %>
+  </div>
+<% end %>
