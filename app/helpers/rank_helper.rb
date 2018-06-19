@@ -6,9 +6,9 @@ module RankHelper
     end
   end
 
-  def generate_rank
+  def generate_rank(tournament_id, round)
     users_ids = Bet.distinct.pluck(:user_id)
-    games_ids = Game.order(:date).where(tournament_id: params[:tournament_id]).ids
+    games_ids = Game.tournament_round(tournament_id,round).ids
     @all_rank = []
     users_ids.each do |id|
       user = User.find(id)
