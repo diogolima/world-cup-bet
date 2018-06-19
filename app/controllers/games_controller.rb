@@ -85,7 +85,7 @@ after_action :calculate_result, only: [:update, :create]
   end
 
   def set_round
-    @rounds = Game.where(tournament_id: params[:tournament_id]).order(:round).distinct(:round).pluck(:round)
+    @rounds = Game.rounds(params[:tournament_id])
   end
 
   def set_date

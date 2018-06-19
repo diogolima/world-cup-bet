@@ -17,4 +17,17 @@ class Game < ApplicationRecord
      errors.add(:second_team_id, "can't be the same as first team.")
    end
   end
+
+  def self.tournament_round(tournament, round=nil)
+    games = Game.order(:date).where(tournament_id: tournament)
+    if !round.blank?
+      games = games.where(round: round)
+    end
+    games
+  end
+
+  def self.rounds(tournament)
+    Game.where(tournament_id: tournament).order(:round).distinct(:round).pluck(:round)
+  end
+
 end
