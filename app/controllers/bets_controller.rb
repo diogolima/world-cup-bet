@@ -1,8 +1,8 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :tournament_pick, only: [:index]
-  before_action only: [:edit, :update] {bet_before_game @bet.game.date}
+  before_action only: [:index] {Tournament.tournament_pick params[:tournament]}
+  before_action only: [:edit, :update] {Bet.bet_before_game @bet.game.date}
 
   def index
     @bets = current_user.get_bets(params[:tournament])
@@ -22,7 +22,7 @@ class BetsController < ApplicationController
   def missing_bets
     @bets = current_user.bets.pluck(:game_id)
     games = Game.all.where(tournament_id: params[:tournament][:id]).where("date > ? ", Time.now.utc - 2.hour).order(:date).where.not(id: @bets)
-    @all_bets = init_bet(games)
+    @all_bets = Bet.init_bet(games, current_user)
     if @all_bets.empty?
       respond_to do |format|
         format.html { redirect_to bets_url, notice: 'All bets for this tournament are ready.'}
@@ -31,14 +31,10 @@ class BetsController < ApplicationController
   end
 
   def create_bets
+    byebug
     params[:bets].each do |bet|
-      if valid_bet(bet)
-        @bet = current_user.bets.build(
-          first_team_score: bet[:first_team_score].to_i,
-          second_team_score: bet[:second_team_score].to_i,
-          game_id: bet[:game_id]
-        )
-        @bet.save
+      if Bet.valid_bet(bet)
+        Bet.save_bet(bet, current_user)
       end
     end
     respond_to do |format|
@@ -80,37 +76,5 @@ class BetsController < ApplicationController
 
   def bet_params
     params.require(:bet).permit(:game_id, :first_team_score, :second_team_score)
-  end
-
-  def valid_bet(bet)
-    @game = Game.find(bet[:game_id])
-    (!bet[:first_team_score].blank? && !bet[:second_team_score].blank?)&&(@game.first_team.id == bet[:first_team_id].to_i && @game.second_team.id == bet[:second_team_id].to_i && !bet_on_time(@game.date))
-  end
-
-  def tournament_pick
-    @tournament_pick = params[:tournament]? 'All bets - '+Tournament.where(id: params[:tournament][:id]).first.name+' tournament.' : 'All bets'
-    @no_bets_tournament = params[:tournament]? 'You don\'t have bets for '+Tournament.where(id: params[:tournament][:id]).first.name+' tournament.' : 'You don\'t have any bet yet!'
-  end
-
-  def init_bet(games)
-    @all_bets = []
-    if !games.nil? || games.count > 0
-      games.each do |game|
-        @all_bets.push(Bet.new(game_id: game.id, user_id: current_user.id))
-      end
-    end
-    @all_bets
-  end
-
-  def bet_before_game(game_date)
-    if bet_on_time(game_date)
-      respond_to do |format|
-        format.html { redirect_to bets_url, alert: 'You can\'t change your bet with less than one hour of the game.'}
-      end
-    end
-  end
-
-  def bet_on_time(game_date)
-    (game_date - 1.hour) <= (Time.now.utc - 3.hour)
   end
 end

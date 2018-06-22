@@ -66,7 +66,7 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'jquery-rails'
 
 gem 'wicked_pdf', '~> 1.1'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary', '~> 0.12.3.1'
 
 gem 'envyable', '~> 1.2', groups: [:development, :test]
 

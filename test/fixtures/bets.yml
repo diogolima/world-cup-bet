@@ -8,8 +8,15 @@ one:
   game: one
 
 two:
-  first_team_score: 1
-  second_team_score: 1
+  first_team_score: 2
+  second_team_score: 2
   bet_score: 1
   user: two
   game: two
+
+three:
+  first_team_score: 3
+  second_team_score: 3
+  bet_score: 1
+  user: one
+  game: three

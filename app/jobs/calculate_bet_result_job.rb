@@ -28,7 +28,7 @@ class CalculateBetResultJob < ApplicationJob
     elsif game2 == bet2
       bet_score += 2
     #Correct goal difference
-  elsif (game1 - game2).abs == (bet1 - bet2).abs
+    elsif (game1 - game2).abs == (bet1 - bet2).abs
       bet_score += 8
     else
       bet_score

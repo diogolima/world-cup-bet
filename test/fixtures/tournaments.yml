@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyText
+  name: WorldCup2018
+  description: w2018
   # image:
 
 two:
-  name: MyString
-  description: MyText
-  # image: 
+  name: WorldCup2022
+  description: w2022
+  # image:

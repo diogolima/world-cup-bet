@@ -1,0 +1,23 @@
+
+one:
+  date: 07-01-2018
+  score_first_team: 1
+  score_second_team: 0
+  tournament: one
+  first_team: one
+  second_team: two
+
+two:
+  date: 07-01-2022
+  score_first_team: 0
+  score_second_team: 1
+  tournament: two
+  first_team: two
+  second_team: one
+three:
+  date: 06-01-2022
+  score_first_team: 0
+  score_second_team: 1
+  tournament: two
+  first_team: two
+  second_team: one

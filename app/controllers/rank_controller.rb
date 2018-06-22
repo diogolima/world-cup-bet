@@ -1,9 +1,8 @@
 class RankController < ApplicationController
-  include RankHelper
   before_action :set_tournament_rank
   before_action only: [:send_pdf] {check_admin rank_url(tournament_id: params[:tournament_id])}
-  before_action only: [:index, :send_pdf] {generate_rank params[:tournament_id], params[:round]}
-  before_action :rank_mailer, only: [:send_pdf]
+  before_action :tournament_rank, only: [:index, :send_pdf]
+  before_action only: [:send_pdf] {Rank.rank_mailer @tournament}
   before_action :authenticate_user!
   before_action :set_round, only: [:index]
 
@@ -35,5 +34,9 @@ class RankController < ApplicationController
 
   def set_round
     @rounds = Game.rounds(params[:tournament_id])
+  end
+
+  def tournament_rank
+    @all_rank = Rank.generate_rank(params[:tournament_id], params[:round])
   end
 end
