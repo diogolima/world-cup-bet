@@ -6,6 +6,7 @@ one:
   tournament: one
   first_team: one
   second_team: two
+  round: 1
 
 two:
   date: 07-01-2022
@@ -14,6 +15,8 @@ two:
   tournament: two
   first_team: two
   second_team: one
+  round: 1
+
 three:
   date: 06-01-2022
   score_first_team: 0
@@ -21,3 +24,4 @@ three:
   tournament: two
   first_team: two
   second_team: one
+  round: 2
