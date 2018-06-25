@@ -1,9 +1,9 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
+  before_action :allow_modify, only: [:edit, :update]
   before_action :authenticate_user!
   before_action only: [:index] {Tournament.tournament_pick params[:tournament]}
-  before_action only: [:edit, :update] {Bet.bet_before_game @bet.game.date}
-
+  before_action :can_see_bet, only: [:show_bet_from_users]
   def index
     @bets = current_user.get_bets(params[:tournament])
     @tournament_missing_bets = current_user.missing_bets_tournament(@tournaments)
@@ -31,7 +31,6 @@ class BetsController < ApplicationController
   end
 
   def create_bets
-    byebug
     params[:bets].each do |bet|
       if Bet.valid_bet(bet)
         Bet.save_bet(bet, current_user)
@@ -66,7 +65,11 @@ class BetsController < ApplicationController
   end
 
   def destroy
+  end
 
+  def show_bet_from_users
+    @game = Game.find(params[:game_id])
+    @bets = Bet.where(game_id: @game.id)
   end
 
   private
@@ -76,5 +79,18 @@ class BetsController < ApplicationController
 
   def bet_params
     params.require(:bet).permit(:game_id, :first_team_score, :second_team_score)
+  end
+
+  def can_see_bet
+    if !Bet.bet_on_time(Game.find(params[:game_id]).date)
+        redirect_to games_per_tournament_path tournament_id: params[:tournament_id], alert: "You can\'t see all the bets yet - bet still can be modify."
+    end
+  end
+  def allow_modify
+   if Bet.bet_on_time(@bet.game.date)
+     respond_to do |format|
+       format.html { redirect_to bets_url, alert: 'You can\'t change your bet with less than one hour of the game.'}
+     end
+   end
   end
 end

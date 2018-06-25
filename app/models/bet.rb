@@ -23,14 +23,6 @@ class Bet < ApplicationRecord
     @bet.save
   end
 
-  def self.bet_before_game(game_date)
-    if bet_on_time(game_date)
-      respond_to do |format|
-        format.html { redirect_to bets_url, alert: 'You can\'t change your bet with less than one hour of the game.'}
-      end
-    end
-  end
-
   def self.bet_on_time(game_date)
     (game_date - 1.hour) <= (Time.now.utc - 3.hour)
   end

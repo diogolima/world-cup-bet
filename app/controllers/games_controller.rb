@@ -59,6 +59,9 @@ after_action only: [:update, :create] {Bet.calculate_result_after_game @game}
           format.html { redirect_to new_game_url tournament_id: params[:tournament_id]}
         end
       else
+        if !params[:alert].blank?
+          flash.now[:error] = params[:alert]
+        end
         format.html { render action: :index }
       end
     end

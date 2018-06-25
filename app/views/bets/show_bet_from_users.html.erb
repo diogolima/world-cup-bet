@@ -1,0 +1,32 @@
+<div class="jumbotron" id="bet_border_title">
+  <h3>
+    Tournament: <%= @game.tournament.name %></br> Round: <%= @game.round %>
+  </h3>
+  </br>
+  <div id="teams_flags">
+    <%= image_tag @game.first_team.image, class: "#{@game.first_team.team_type}_team_image img-rounded", title: @game.first_team.name  %>
+    X
+    <%= image_tag @game.second_team.image, class: "#{@game.first_team.team_type}_team_image img-rounded", title: @game.second_team.name  %>
+    <%= link_to "Back", games_per_tournament_path(tournament_id: @game.tournament.id), class: "btn btn-default" %>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User name </th>
+        <th>First team score</th>
+        <th>Second team score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bets.each do |bet| %>
+        <tr>
+          <td><%= bet.user.name %></td>
+          <td> <%= bet.first_team_score %></td>
+          <td> <%= bet.second_team_score %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

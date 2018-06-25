@@ -37,11 +37,11 @@
           </ul>
         </li>
         <li><%= link_to "Contact", new_message_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <% if user_admin %>
           <li><%= link_to "Users", users_admin_index_path %></li>
         <% end %>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li><%= link_to current_user.name, edit_user_registration_path %></li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
