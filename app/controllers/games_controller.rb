@@ -60,7 +60,7 @@ after_action only: [:update, :create] {Bet.calculate_result_after_game @game}
         end
       else
         if !params[:alert].blank?
-          flash.now[:error] = params[:alert]
+          flash.now[:alert] = params[:alert]
         end
         format.html { render action: :index }
       end
