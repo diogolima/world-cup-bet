@@ -13,7 +13,7 @@
     <strong> Date: </strong><%= @game.date.strftime("%d/%m/%Y at %I:%M %p") %> </br>
     <strong> Score: </strong>
     <mark>
-    <% if @game.score_first_team? %>
+    <% if @game.score_first_team.blank? %>
       <%= @game.score_first_team %> x <%= @game.score_second_team %>
     <% else %>
       Waiting
