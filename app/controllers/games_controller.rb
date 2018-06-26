@@ -3,7 +3,7 @@ before_action :set_teams, only: [:new, :create, :edit, :update]
 before_action :set_game, only: [:show, :edit, :update, :destroy]
 before_action :set_round, only: [:per_tournament, :round]
 before_action :authenticate_user!, except: [:show, :index]
-after_action :calculate_result, only: [:update, :create]
+after_action only: [:update, :create] {Bet.calculate_result_after_game @game}
 
   def index
     @games = Game.all.order(:date) if @games.blank?
@@ -59,6 +59,9 @@ after_action :calculate_result, only: [:update, :create]
           format.html { redirect_to new_game_url tournament_id: params[:tournament_id]}
         end
       else
+        if !params[:alert].blank?
+          flash.now[:alert] = params[:alert]
+        end
         format.html { render action: :index }
       end
     end
@@ -90,11 +93,5 @@ after_action :calculate_result, only: [:update, :create]
 
   def set_date
     @game.date = !params[:game][:date].blank? ? DateTime.strptime(params[:game][:date], "%m/%d/%Y %H:%M %p") : nil
-  end
-
-  def calculate_result
-    if !@game.score_first_team.blank? && !@game.score_second_team.blank?
-      CalculateBetResultJob.perform_now @game
-    end
   end
 end

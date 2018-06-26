@@ -1,8 +1,8 @@
 <div>
   <div class="jumbotron">
-    <h2>All Games - <%= @games.first.tournament.name %>
+    <h2>All Games <%= tournament_name %>
     <% if user_admin %>
-      <%= link_to 'New', new_game_path(tournament_id: @games.first.tournament_id), class: "btn btn-dark"%>
+      <%= link_to 'New', new_game_path(tournament_id: params[:tournament_id]), class: "btn btn-dark"%>
     <% end %>
     </h2>
   </div>

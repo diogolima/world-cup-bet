@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'tournaments#index'
   get 'games/per_tournament' => 'games#per_tournament'
   get 'bets/missing_bets' => 'bets#missing_bets'
+  get 'bets/users_bet' => 'bets#show_bet_from_users'
   post 'bets/create_bets' => 'bets#create_bets'
   get 'rank' => 'rank#index'
   get 'scored_bets' => 'rank#scored_bets'
