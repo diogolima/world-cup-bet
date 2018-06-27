@@ -84,3 +84,6 @@ gem 'omniauth-google-oauth2', '~> 0.5.3'
 gem 'activerecord-session_store', '~> 1.0'
 
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
+
+#Payments
+gem 'stripe', '~> 3.15'

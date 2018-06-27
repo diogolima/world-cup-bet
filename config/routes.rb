@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'rank' => 'rank#index'
   get 'scored_bets' => 'rank#scored_bets'
   get 'send_pdf' => 'rank#send_pdf'
+  resources :charges
   resources :users_admin
   resources :tournaments
   resources :teams

@@ -19,6 +19,7 @@
         </figure>
       </td>
       <td class="tournament-description"><%= tournament.description %></td>
+      <td class="middle-align"><%= render "charges/new", tournament_id: "#{tournament.id}" %></td>
     </tr>
   </tbody>
   <% end %>
