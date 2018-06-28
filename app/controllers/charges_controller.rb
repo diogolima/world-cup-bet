@@ -1,10 +1,8 @@
 class ChargesController < ApplicationController
   def new
-    byebug
   end
 
   def create
-    byebug
     #in cents
     @amount = 1000
 
