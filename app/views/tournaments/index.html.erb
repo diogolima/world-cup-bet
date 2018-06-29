@@ -9,19 +9,20 @@
 </div>
 <div class="table-responsive">
   <table class="table table-striped">
-  <% @tournaments.each do |tournament| %>
-  <tbody>
-    <tr class="tournament-vertical-align">
-      <td>
-        <figure>
-          <%= link_to (image_tag tournament.image.url(:thumb), class: 'image'), games_per_tournament_path(tournament_id: tournament.id) %>
-          <p><figcaption><%= tournament.name %></figcaption></p>
-        </figure>
-      </td>
-      <td class="tournament-description"><%= tournament.description %></td>
-      <td class="middle-align"><%= render "charges/new", tournament_id: "#{tournament.id}" %></td>
-    </tr>
-  </tbody>
-  <% end %>
-</div>
+    <tbody>
+      <% @tournaments.each do |tournament| %>
+        <tr class="tournament-vertical-align">
+          <td>
+            <figure>
+              <%= link_to (image_tag tournament.image.url(:thumb), class: 'image'), games_per_tournament_path(tournament_id: tournament.id) %>
+              <p><figcaption><%= tournament.name %></figcaption></p>
+            </figure>
+          </td>
+          <td class="tournament-description"><%= tournament.description %></td>
+          <td class="middle-align <%= tournament.charge.blank? ? 'not_payed' : 'payed' %>"><%= render "charges/new", tournament_id: "#{tournament.id}" %></td>
+          </span>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
+</div>

@@ -17,3 +17,9 @@
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap-datetimepicker
+$(document).ready(function() {
+  var i = $('.payed').length;
+  for(var i=0, payed = $('.payed').length; i < payed ; i++){
+    $('.payed')[i].querySelector('.stripe-button-el').setAttribute('disabled', 'disabled');
+  }
+});
