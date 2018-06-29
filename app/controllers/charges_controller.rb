@@ -1,6 +1,6 @@
 class ChargesController < ApplicationController
 before_action :check_charged, only: [:create]
-after_action only: [:create] {Charge.user_pay_bet_in_tournament(current_user, params[:tournament_id], @charge)}
+after_action only: [:create] {Charge.user_pay_bet_in_tournament(current_user, @tournament, @charge)}
 
   def create
     #in cents - US$10.00
@@ -18,7 +18,7 @@ after_action only: [:create] {Charge.user_pay_bet_in_tournament(current_user, pa
       :currency => 'usd'
     )
     respond_to do |format|
-      format.html { redirect_to tournaments_url, alert: "You payed for #{@tournament.name} tournament."}
+      format.html { redirect_to tournaments_url, notice: "You payed for #{@tournament.name} tournament."}
     end
 
     rescue Stripe::CardError => e
