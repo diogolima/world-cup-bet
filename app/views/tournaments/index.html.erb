@@ -19,7 +19,7 @@
             </figure>
           </td>
           <td class="tournament-description"><%= tournament.description %></td>
-          <td class="middle-align <%= tournament.charge.blank? ? 'not_payed' : 'payed' %>"><%= render "charges/new", tournament_id: "#{tournament.id}" %></td>
+          <td class="middle-align <%= user_payed(tournament.id) ? 'payed' : 'not_payed' %>"><%= render "charges/new", tournament_id: "#{tournament.id}" %></td>
           </span>
         </tr>
       <% end %>

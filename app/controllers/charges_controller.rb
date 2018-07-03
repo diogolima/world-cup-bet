@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
 before_action :check_charged, only: [:create]
+before_action :authenticate_user!
 after_action only: [:create] {Charge.user_pay_bet_in_tournament(current_user, @tournament, @charge)}
 
   def create
