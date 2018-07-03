@@ -1,6 +1,6 @@
 class UsersAdminController < ApplicationController
   before_action :set_user_config, only: [:show, :edit, :update]
-  before_action {check_admin root_path}
+  before_action {check_admin home_path}
   def index
     @users = User.all
   end

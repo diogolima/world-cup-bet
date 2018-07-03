@@ -54,7 +54,7 @@ after_action only: [:update, :create] {Bet.calculate_result_after_game @game}
     respond_to do |format|
       if @games.blank?
         if !current_user.admin
-          format.html { redirect_to root_path, notice: 'This tournament does not have games.' }
+          format.html { redirect_to home_path, notice: 'This tournament does not have games.' }
         else
           format.html { redirect_to new_game_url tournament_id: params[:tournament_id]}
         end
