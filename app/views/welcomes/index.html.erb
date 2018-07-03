@@ -1,0 +1,44 @@
+<div id="home_image">
+  <%= image_tag("player_pele.png") %>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-5">
+        <h4>Are you a admin?</h4>
+        <ul>
+          <li>You can create
+            <%= link_to 'Teams', new_team_path %>
+          </li>
+          <li>You can create
+            <%= link_to 'Tournaments', new_tournament_path %>
+          </li>
+          <li>You can create games but you need create teams and tournaments first</li>
+          <li>You can do your
+            <%= link_to 'Bets', bets_path %>
+          </li>
+          <li>You can send the rank by email for all users <br/>
+            <mark> Go to a rank of a tournament and click in Send PDF</mark>
+          </li>
+          <li>
+            You can see all <%= link_to "Users", users_admin_index_path %> of the system
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-5">
+        <h4>Are you a user?</h4>
+        <ul>
+          <li>You can create your <%= link_to 'Bets', bets_path %> until one hour before the game</li>
+          <li>You can create all best at once or do one at a time</li>
+          <li>You can see all bets of a game, if the betting time is over. <br/>
+            Choose games from a tournament and click in Bets to see all bets.
+          </li>
+          <li>You can see all bets of an user, in the rank <br/>
+            Go to a rank from a tournament and click in the user name.
+          </li>
+          <li>You can <%= link_to "Contact", new_message_path %> the admin</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

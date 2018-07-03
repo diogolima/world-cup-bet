@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <%= link_to 'Bets', root_path, class: 'navbar-brand' %>
+      <%= link_to 'Bets', home_path, class: 'navbar-brand' %>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-menu">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -17,25 +17,27 @@
         <li class="nav-item">
           <%= link_to 'Tournaments', tournaments_path %>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <% @tournaments.each do |tournament| %>
-              <li><%= link_to tournament.name, games_per_tournament_path(tournament_id: tournament.id)  %></li>
-            <% end %>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'My bets', bets_path %>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rank <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <% @tournaments.each do |tournament| %>
-              <li><%= link_to tournament.name, rank_path(tournament_id: tournament.id)  %></li>
-            <% end %>
-          </ul>
-        </li>
+        <% if user_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% @tournaments.each do |tournament| %>
+                <li><%= link_to tournament.name, games_per_tournament_path(tournament_id: tournament.id)  %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'My bets', bets_path %>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rank <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% @tournaments.each do |tournament| %>
+                <li><%= link_to tournament.name, rank_path(tournament_id: tournament.id)  %></li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
         <li><%= link_to "Contact", new_message_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
