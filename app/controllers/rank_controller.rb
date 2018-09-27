@@ -10,9 +10,7 @@ class RankController < ApplicationController
   end
 
   def send_pdf
-    respond_to do |format|
-      format.html { redirect_to rank_url(tournament_id: params[:tournament_id]), notice: 'Email sent for all users'}
-    end
+    redirect_to rank_url(tournament_id: params[:tournament_id]), notice: 'Email sent for all users'
   end
 
   def scored_bets
@@ -21,9 +19,7 @@ class RankController < ApplicationController
     @bets = Bet.where(user_id: params[:user_id]).where(game_id: @games.ids)
     @user = User.find(params[:user_id])
     if @bets.blank?
-      respond_to do |format|
-        format.html { redirect_to rank_url(tournament_id: params[:tournament_id]), alert: 'This user doesn\'t have bets for this tournament or no game has happened yet.' }
-      end
+      redirect_to rank_url(tournament_id: params[:tournament_id]), alert: 'This user doesn\'t have bets for this tournament or no game has happened yet.' 
     end
   end
 

@@ -17,12 +17,10 @@ after_action only: [:update, :create] {Bet.calculate_result_after_game @game}
 
   def update
     set_date
-    respond_to do |format|
-      if @game.update(game_params)
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @game.update(game_params)
+      redirect_to @game, notice: 'Game was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -33,45 +31,37 @@ after_action only: [:update, :create] {Bet.calculate_result_after_game @game}
   def create
     @game = Game.new(game_params)
     set_date
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @game.save
+      redirect_to @game, notice: 'Game was successfully created.'
+    else
+      render :new
     end
   end
 
   def destroy
     @game.destroy
-    respond_to do |format|
-      format.html { redirect_to games_per_tournament_path(tournament_id: @game.tournament.id), notice: 'Game was successfully destroyed.' }
-    end
+    redirect_to games_per_tournament_path(tournament_id: @game.tournament.id), notice: 'Game was successfully destroyed.'
   end
 
   def per_tournament
     @games = Game.order(:date).where(tournament_id: params[:tournament_id])
-    respond_to do |format|
-      if @games.blank?
-        if !current_user.admin
-          format.html { redirect_to home_path, notice: 'This tournament does not have games.' }
-        else
-          format.html { redirect_to new_game_url tournament_id: params[:tournament_id]}
-        end
+    if @games.blank?
+      if !current_user.admin
+        redirect_to home_path, notice: 'This tournament does not have games.'
       else
-        if !params[:alert].blank?
-          flash.now[:alert] = params[:alert]
-        end
-        format.html { render action: :index }
+        redirect_to new_game_url tournament_id: params[:tournament_id]
       end
+    else
+      if !params[:alert].blank?
+        flash.now[:alert] = params[:alert]
+      end
+      render action: :index
     end
   end
 
   def round
     @games = Game.order(:date).where(tournament_id: params[:tournament_id], round: params[:round])
-    respond_to do |format|
-      format.html { render action: :index }
-    end
+    render action: :index
   end
 
   private

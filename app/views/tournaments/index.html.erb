@@ -12,13 +12,16 @@
   <% @tournaments.each do |tournament| %>
   <tbody>
     <tr class="tournament-vertical-align">
-      <td>
+      <td class="middle-align">
         <figure>
           <%= link_to (image_tag tournament.image.url(:thumb), class: 'image'), games_per_tournament_path(tournament_id: tournament.id) %>
           <p><figcaption><%= tournament.name %></figcaption></p>
         </figure>
       </td>
       <td class="tournament-description"><%= tournament.description %></td>
+      <% if user_admin %>
+        <td class="middle-align"> <%= link_to 'Delete', tournament_path(tournament), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-dark" %> </td>
+      <% end %>
     </tr>
   </tbody>
   <% end %>

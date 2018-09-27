@@ -24,9 +24,7 @@ class BetsController < ApplicationController
     games = Game.all.where(tournament_id: params[:tournament][:id]).where("date > ? ", Time.now.utc - 2.hour).order(:date).where.not(id: @bets)
     @all_bets = Bet.init_bet(games, current_user)
     if @all_bets.empty?
-      respond_to do |format|
-        format.html { redirect_to bets_url, notice: 'All bets for this tournament are ready.'}
-      end
+      redirect_to bets_url, notice: 'All bets for this tournament are ready.'
     end
   end
 
@@ -36,31 +34,23 @@ class BetsController < ApplicationController
         Bet.save_bet(bet, current_user)
       end
     end
-    respond_to do |format|
-      format.html { redirect_to bets_url, notice: 'Filled bets were created.' }
-    end
+    redirect_to bets_url, notice: 'Filled bets were created.'
   end
 
   def update
-    respond_to do |format|
-      if @bet.update(bet_params)
-        format.html { redirect_to bets_url, notice: 'Bet was successfully updated'}
-      else
-        format.html { render :edit }
-      end
+    if @bet.update(bet_params)
+      redirect_to bets_url, notice: 'Bet was successfully updated'
+    else
+      render :edit
     end
   end
 
   def create
     @bet = current_user.bets.build(bet_params)
-    respond_to do |format|
-      if @bet.save
-        format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
-        format.json { render :show, status: :created, location: @bet }
-      else
-        format.html { render :new }
-        format.json { render json: @bet.errors, status: :unprocessable_entity }
-      end
+    if @bet.save
+      redirect_to @bet, notice: 'Bet was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -83,14 +73,13 @@ class BetsController < ApplicationController
 
   def can_see_bet
     if !Bet.bet_on_time(Game.find(params[:game_id]).date)
-        redirect_to games_per_tournament_path tournament_id: params[:tournament_id], alert: "You can\'t see all the bets yet - bet still can be modify."
+      redirect_to games_per_tournament_path tournament_id: params[:tournament_id], alert: "You can\'t see all the bets yet - bet still can be modify."
     end
   end
   def allow_modify
    if Bet.bet_on_time(@bet.game.date)
-     respond_to do |format|
-       format.html { redirect_to bets_url, alert: 'You can\'t change your bet with less than one hour of the game.'}
-     end
+     redirect_to bets_url, alert: 'You can\'t change your bet with less than one hour of the game.'
    end
   end
+  
 end
