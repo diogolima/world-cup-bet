@@ -10,7 +10,7 @@ class UsersAdminController < ApplicationController
 
   def update
     if @user.update(user_params)
-      format.html { redirect_to users_admin_index_url, notice: 'User was successfully updated.'
+      redirect_to users_admin_index_url, notice: 'User was successfully updated.'
     else
       render :edit
     end
